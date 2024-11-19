@@ -5,6 +5,9 @@ public:
 	CircleCollider(Vector center, float radius);
 	~CircleCollider();
 
+	Vector& Center() { return _center; }
+	float& Radius() { return _radius; }
+
 	void Update();
 	void Render(HDC hdc);
 
