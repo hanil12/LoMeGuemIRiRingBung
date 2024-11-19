@@ -31,5 +31,10 @@ using namespace std;
 #include "Contents/Objects/CircleCollider.h"
 #include "Contents/Objects/RectCollider.h"
 
+// Scene
+#include "Scenes/Scene.h"
+
 // Program
 #include "Program/Program.h"
+
+extern Vector mousePos;

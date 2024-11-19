@@ -152,8 +152,10 @@
     <ClInclude Include="Contents\Objects\Line.h" />
     <ClInclude Include="Math\Vector.h" />
     <ClInclude Include="Contents\Objects\RectCollider.h" />
+    <ClInclude Include="Scenes\PaintScene.h" />
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="WIN_API_MERO.h" />
@@ -172,7 +174,9 @@
     </ClCompile>
     <ClCompile Include="Contents\Objects\RectCollider.cpp" />
     <ClCompile Include="Contents\Objects\Line.cpp" />
+    <ClCompile Include="Scenes\PaintScene.cpp" />
     <ClCompile Include="Program\Program.cpp" />
+    <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="WIN_API_MERO.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -136,12 +136,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 // message : 
 
 Vector mousePos;
-
 shared_ptr<Program> program = make_shared<Program>();
-
-shared_ptr<CircleCollider> myCircle = make_shared<CircleCollider>(Vector(200,200), 70);
-shared_ptr<RectCollider> rect = make_shared<RectCollider>(Vector(400,400), Vector(140,70));
-shared_ptr<Line> line = make_shared<Line>(Vector(200,200), Vector(400,400));
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -156,10 +151,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_TIMER:
     {
         program->Update();
-
-        myCircle->Update();
-        rect->Update();
-        line->Update();
 
         InvalidateRect(hWnd, nullptr, true);
         break;
@@ -197,16 +188,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
 
             program->Render(hdc);
-
-            // Rect
-            rect->Render(hdc);
-            rect->Center() = LinearInterpolation(rect->Center(), mousePos, 0.1f);
-
-            myCircle->Center() = mousePos;
-            myCircle->Render(hdc);
-
-            // 선
-            line->Render(hdc);
 
             EndPaint(hWnd, &ps);
         }
