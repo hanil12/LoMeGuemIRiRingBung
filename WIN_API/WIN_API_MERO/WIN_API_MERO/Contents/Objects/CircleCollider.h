@@ -2,6 +2,7 @@
 // 1. 색
 // 2. 상속관계 정의
 // 3. 충돌처리(AABB, OBB)
+class RectCollider;
 
 
 // Collider : 충돌체
@@ -19,6 +20,10 @@ public:
 
 	void SetRed() { _curColor = 0; }
 	void SetGreen() { _curColor = 1; }
+
+	bool IsCollision(const Vector& pos) const;
+	bool IsCollision(shared_ptr<CircleCollider> other) const;
+	bool IsCollision(shared_ptr<RectCollider> other) const;
 
 private:
 	int			 _curColor = 0;
