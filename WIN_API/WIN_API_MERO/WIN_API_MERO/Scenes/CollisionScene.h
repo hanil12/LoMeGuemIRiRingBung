@@ -9,7 +9,7 @@ public:
 	void Render(HDC hdc) override;
 
 private:
-	shared_ptr<CircleCollider> _fixedCircle;
-	shared_ptr<CircleCollider> _movableCircle;
+	shared_ptr<Collider> _fixedCircle;
+	shared_ptr<Collider> _movableCircle;
 };
 

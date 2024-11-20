@@ -28,6 +28,7 @@ using namespace std;
 
 // Contents
 #include "Contents/Objects/Line.h"
+#include "Contents/Objects/Collider.h"
 #include "Contents/Objects/CircleCollider.h"
 #include "Contents/Objects/RectCollider.h"
 

@@ -3,9 +3,10 @@
 #include "CircleCollider.h"
 
 CircleCollider::CircleCollider(Vector center, float radius)
-: _center(center)
-, _radius(radius)
+: _radius(radius)
 {
+	_center = center;
+
 	_colors[0] = CreatePen(3,3,RED);
 	_colors[1] = CreatePen(3,3,GREEN);
 
@@ -42,10 +43,16 @@ bool CircleCollider::IsCollision(const Vector& pos) const
 
 bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other) const
 {
-	return false;
+	float radiusSum = _radius + other->Radius();
+	float length = (other->Center() - _center).Length();
+
+	return length < radiusSum;
 }
 
 bool CircleCollider::IsCollision(shared_ptr<RectCollider> other) const
 {
+	// °úÁ¦
+	// OBB, AABB
+
 	return false;
 }

@@ -6,30 +6,22 @@ class RectCollider;
 
 
 // Collider : �浹ü
-class CircleCollider
+class CircleCollider : public Collider
 {
 public:
 	CircleCollider(Vector center, float radius);
 	~CircleCollider();
 
-	Vector& Center() { return _center; }
 	float& Radius() { return _radius; }
 
-	void Update();
-	void Render(HDC hdc);
+	virtual void Update() override;
+	virtual void Render(HDC hdc) override;
 
-	void SetRed() { _curColor = 0; }
-	void SetGreen() { _curColor = 1; }
-
-	bool IsCollision(const Vector& pos) const;
-	bool IsCollision(shared_ptr<CircleCollider> other) const;
-	bool IsCollision(shared_ptr<RectCollider> other) const;
+	virtual bool IsCollision(const Vector& pos) const override;
+	virtual bool IsCollision(shared_ptr<CircleCollider> other) const override;
+	virtual bool IsCollision(shared_ptr<RectCollider> other) const override;
 
 private:
-	int			 _curColor = 0;
-	HPEN		 _colors[2];
-
-	Vector		 _center;
 	float		 _radius;
 };
 
