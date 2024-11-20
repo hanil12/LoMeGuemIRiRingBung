@@ -15,8 +15,14 @@ public:
 	void Update();
 	void Render(HDC hdc);
 
+	void SetRed() { _curColor = 0; }
+	void SetGreen() { _curColor = 1; }
+
 private:
-	Vector _center;
-	Vector _halfSize;
+	int			 _curColor = 0;
+	HPEN		 _colors[2];
+
+	Vector		 _center;
+	Vector		 _halfSize;
 };
 
