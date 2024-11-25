@@ -5,6 +5,8 @@
 CircleCollider::CircleCollider(Vector center, float radius)
 : _radius(radius)
 {
+	_type = Collider::Type::CIRCLE;
+
 	_center = center;
 
 	_colors[0] = CreatePen(3,3,RED);

@@ -3,8 +3,8 @@
 
 CollisionScene::CollisionScene()
 {
-	_fixedCircle = make_shared<CircleCollider>(Vector(400,400), 70);
-	_movableCircle = make_shared<CircleCollider>(Vector(0,0), 100);
+	_fixedCircle = make_shared<RectCollider>(Vector(400,400), Vector(300,120));
+	_movableCircle = make_shared<RectCollider>(Vector(0,0), Vector(100,100));
 }
 
 CollisionScene::~CollisionScene()

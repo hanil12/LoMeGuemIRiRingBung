@@ -83,7 +83,17 @@ public:
     }
     Vector NormalVector() const
     {
-        return Vector(x / Length(), y / Length());
+        float length = Length();
+
+        return Vector(x / length, y / length);
+    }
+
+    void Normalize()
+    {
+        float length = Length();
+
+        x /= length;
+        y /= length;
     }
 
 public:
