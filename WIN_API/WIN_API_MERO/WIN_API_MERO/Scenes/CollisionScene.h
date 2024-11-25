@@ -10,6 +10,6 @@ public:
 
 private:
 	shared_ptr<Collider> _fixedCircle;
-	shared_ptr<Collider> _movableCircle;
+	shared_ptr<Collider> _movableRect;
 };
 

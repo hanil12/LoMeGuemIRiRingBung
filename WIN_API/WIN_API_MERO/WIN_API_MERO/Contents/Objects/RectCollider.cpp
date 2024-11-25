@@ -10,6 +10,8 @@ RectCollider::RectCollider(Vector center, Vector size)
 
 	_colors[0] = CreatePen(3, 3, RED);
 	_colors[1] = CreatePen(3, 3, GREEN);
+
+	SetGreen();
 }
 
 RectCollider::~RectCollider()
@@ -43,7 +45,34 @@ bool RectCollider::IsCollision(const Vector& pos) const
 
 bool RectCollider::IsCollision(shared_ptr<class CircleCollider> other) const
 {
-	return false;
+	// OBB
+	OBB_INFO a = GetOBB();
+	Vector aTob = other->Center() - a.position;
+
+	float d = sqrtf(a.length[0] * a.length[0] + a.length[1] * a.length[1]) + other->Radius();
+	if(d < aTob.Length())
+		return false;
+
+	Vector normal_ea1 = a.direction[0].NormalVector();
+	Vector ea1 = a.direction[0];
+	Vector normal_ea2 = a.direction[1].NormalVector();
+	Vector ea2 = a.direction[1];
+
+	// nea1 기준으로 투영
+	float length = abs(normal_ea1.Dot(aTob)); // a To b 길이의 절대값
+	float lengthB = other->Radius();
+	float lengthA = a.length[0];
+	if (length > lengthB + lengthA)
+		return false;
+
+	// nea2 기준으로 투영
+	length = abs(normal_ea2.Dot(aTob));
+	lengthB = other->Radius();
+	lengthA = a.length[1];
+	if (length > lengthB + lengthA)
+		return false;
+
+	return true;
 }
 
 RectCollider::OBB_INFO RectCollider::GetOBB() const
