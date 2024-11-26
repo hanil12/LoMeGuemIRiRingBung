@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Contents\GameObject\Cannon.h" />
+    <ClInclude Include="Scenes\CannonScene.h" />
     <ClInclude Include="Contents\Objects\Collider.h" />
     <ClInclude Include="Scenes\CollisionScene.h" />
     <ClInclude Include="Contents\Objects\CircleCollider.h" />
@@ -163,6 +165,8 @@
     <ClInclude Include="WIN_API_MERO.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Contents\GameObject\Cannon.cpp" />
+    <ClCompile Include="Scenes\CannonScene.cpp" />
     <ClCompile Include="Contents\Objects\Collider.cpp" />
     <ClCompile Include="Scenes\CollisionScene.cpp" />
     <ClCompile Include="Contents\Objects\CircleCollider.cpp" />
