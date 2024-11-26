@@ -53,8 +53,5 @@ bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other) const
 
 bool CircleCollider::IsCollision(shared_ptr<RectCollider> other) const
 {
-	// °úÁ¦
-	// OBB, AABB
-
-	return false;
+	return other->IsCollision(static_pointer_cast<CircleCollider>(const_pointer_cast<Collider>(shared_from_this())));
 }

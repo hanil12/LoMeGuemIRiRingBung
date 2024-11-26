@@ -25,7 +25,7 @@ void CollisionScene::Update()
 	_movableRect->Center() = mousePos;
 
 	// 원, 원 충돌
-	if (_movableRect->IsCollision(_fixedCircle))
+	if (_fixedCircle->IsCollision(_movableRect))
 		_fixedCircle->SetRed();
 	else
 		_fixedCircle->SetGreen();
