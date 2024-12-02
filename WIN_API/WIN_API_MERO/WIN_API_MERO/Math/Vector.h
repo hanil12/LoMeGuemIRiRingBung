@@ -59,6 +59,21 @@ public:
         return Vector(x / length, y / length);
     }
 
+    Vector& operator=(const Vector& other)
+    {
+        x = other.x;
+        y = other.y;
+
+        return *this;
+    }
+    Vector& operator+=(const Vector& other)
+    {
+        x += other.x;
+        y += other.y;
+
+        return *this;
+    }
+
     void Normalize()
     {
         float length = Length();

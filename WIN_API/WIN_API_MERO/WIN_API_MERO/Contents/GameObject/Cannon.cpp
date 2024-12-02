@@ -7,6 +7,7 @@ Cannon::Cannon()
 {
 	_body = make_shared<CircleCollider>(Vector(350,350), 50);
 	_barrel = make_shared<Barrel>();
+
 }
 
 Cannon::~Cannon()
@@ -28,6 +29,16 @@ void Cannon::Render(HDC hdc)
 	_body->Render(hdc);
 }
 
+void Cannon::Fire()
+{
+	// 0b 1000 0000 0000 0001
+	// 0b 0111 0000 0000 0001
+	if (GetAsyncKeyState(VK_SPACE) & 0x8001)
+	{
+		
+	}
+}
+
 void Cannon::InputMove()
 {
 	if(GetAsyncKeyState(VK_LEFT) & 0x8001)
@@ -39,12 +50,8 @@ void Cannon::InputMove()
 
 void Cannon::InputBarrelRotation()
 {
-	// TODO : 방향키 위로 누르면 총신의 각도가 +가 되게
-	// 방향키 아래를 누르면 총신의 각도가 -가 되게하기.
-
 	Vector dir = mousePos - _body->Center();
 	dir.Normalize();
 
-	//_barrel->_start = _body->Center();
-	//_barrel->_end = _body->Center() + dir * _barrelLength;
+	_barrel->SetDirection(dir);
 }
