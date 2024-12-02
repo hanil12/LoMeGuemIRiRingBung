@@ -4,61 +4,33 @@
 struct Vector {
 
 public:
-    Vector() :x(0.0f), y(0.0f) {
+    Vector() :x(0.0f), y(0.0f) {}
+    Vector(float x, float y) : x(x), y(y) {}
+    Vector(const Vector& other) : x(other.x), y(other.y) {}
+    ~Vector() {}
 
-
-    }
-    Vector(float x, float y) : x(x), y(y) {
-
-
-    }
-    Vector(const Vector& other) : x(other.x), y(other.y) {
-
-
-    }
-    ~Vector() {
-
-    }
-
-
-    float& operator[](int temp) {
-
-        if (temp == 0) {
-
-            return x;
-
-        }
-        else {
-
-            return y;
-        }
-    }
-
-    float Dot(const Vector& other) {
-
+    float Dot(const Vector& other)
+    {
         float result;
-
         result = (this->x * other.x) + (this->y * other.y);
 
         return result;
     }
-    float Cross(const Vector& other) {
-
+    float Cross(const Vector& other) 
+    {
         float result;
-
         result = (this->x * other.y) - (this->y * other.x);
 
         return result;
-
     }
-    float Length() const {
+    float Length() const 
+    {
 
         return sqrtf((x * x) + (y * y));
     }
 
-    Vector operator+(const Vector& other) const {
-
-
+    Vector operator+(const Vector& other) const 
+    {
 
         Vector result;
 
@@ -66,10 +38,9 @@ public:
         result.y = this->y + other.y;
 
         return result;
-
     }
-    Vector operator-(const Vector& other) const {
-
+    Vector operator-(const Vector& other) const
+    {
         Vector result;
 
         result.x = this->x - other.x;
@@ -99,5 +70,4 @@ public:
 public:
     float x;
     float y;
-
 };
