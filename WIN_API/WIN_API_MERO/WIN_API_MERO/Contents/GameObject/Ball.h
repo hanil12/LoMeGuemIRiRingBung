@@ -15,6 +15,7 @@ public:
 	void Fire(Vector pos, Vector dir);
 
 	bool IsActive() { return _isActive; }
+	bool IsOut();
 
 private:
 	bool _isActive = false;

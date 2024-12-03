@@ -12,6 +12,7 @@ Ball::~Ball()
 
 void Ball::Update()
 {
+	if(IsOut() == true) _isActive = false;
 	if(_isActive == false)	return;
 
 	_ball->Update();
@@ -38,4 +39,15 @@ void Ball::Fire(Vector pos, Vector dir)
 
 	SetPos(pos);
 	SetDirection(dir);
+}
+
+bool Ball::IsOut()
+{
+	int x = _ball->Center().x;
+	int y = _ball->Center().y;
+
+	if(x > WIN_WIDTH || x < 0 || y > WIN_HEIGHT)
+		return true;
+
+	return false;
 }

@@ -2,6 +2,9 @@
 
 #define PI 3.141592f
 
+#define WIN_WIDTH 1280
+#define WIN_HEIGHT 720
+
 #define LinearInterpolation(s,e,t) s + (e - s) * t
 
 // COLOR
