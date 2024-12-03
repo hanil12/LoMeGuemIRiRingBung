@@ -73,6 +73,13 @@ public:
 
         return *this;
     }
+    Vector& operator-=(const Vector& other)
+    {
+        x -= other.x;
+        y -= other.y;
+
+        return *this;
+    }
 
     void Normalize()
     {

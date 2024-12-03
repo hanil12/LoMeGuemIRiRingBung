@@ -24,6 +24,8 @@ private:
 private:
 	shared_ptr<CircleCollider> _body;
 	shared_ptr<class Barrel> _barrel;
-	shared_ptr<class Ball> _ball;
+
+	int _poolCount = 30;
+	vector<shared_ptr<class Ball>> _ballPool;
 };
 
