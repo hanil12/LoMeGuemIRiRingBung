@@ -146,13 +146,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
     {
-        SetTimer(hWnd, 1, 1, nullptr); // 1ms마다 WM_TIMER 메시지 처리
+        SetTimer(hWnd, 1, 10, nullptr); // 10ms마다 WM_TIMER 메시지 처리
         break;
     }
 
     case WM_TIMER:
     {
-        program->Update();
+        program->Update(); // 1초에 100... => 100fps
 
         InvalidateRect(hWnd, nullptr, true);
         break;

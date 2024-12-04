@@ -35,7 +35,9 @@ void Cannon::Update()
 
 	InputMove(); // 입력해서 움직이게
 	InputBarrelRotation(); // 입력으로 총싱 각도 조정
-	Fire();
+
+	if(IsFireReady())
+		Fire();
 }
 
 // GPU

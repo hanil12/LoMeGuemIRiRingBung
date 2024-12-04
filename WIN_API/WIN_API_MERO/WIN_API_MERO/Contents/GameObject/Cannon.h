@@ -15,6 +15,18 @@ public:
 	void Fire();
 	void Ready() { _barrel->SetCannon(shared_from_this()); }
 
+	bool IsFireReady() 
+	{
+		_fireTime += 0.01f; 
+		if (_fireTime > _fireDelay)
+		{
+			_fireTime = 0.0f;
+			return true;
+		}
+
+		return false;
+	}
+
 private:
 	// 입력으로 좌우로 움직이게 만드는 함수
 	void InputMove();
@@ -27,5 +39,8 @@ private:
 
 	int _poolCount = 30;
 	vector<shared_ptr<class Ball>> _ballPool;
+
+	float _fireDelay = 1.0f; // 1초를 정확히 할 수 있을까? X
+	float _fireTime = 0.0f;
 };
 
