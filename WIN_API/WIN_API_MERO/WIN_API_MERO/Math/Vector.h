@@ -89,6 +89,16 @@ public:
         y /= length;
     }
 
+    float Angle() const
+    {
+        return atan2(y,x);
+    }
+
+    float Angle(const Vector& other)
+    {
+        return Angle() - other.Angle();
+    }
+
 public:
     float x;
     float y;
