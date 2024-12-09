@@ -6,8 +6,6 @@
 CannonScene::CannonScene()
 {
 	_cannon = make_shared<Cannon>();
-
-	_cannon->Ready();
 }
 
 CannonScene::~CannonScene()

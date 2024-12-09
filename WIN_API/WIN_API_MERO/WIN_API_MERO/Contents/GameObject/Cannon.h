@@ -7,13 +7,13 @@ public:
 	Cannon();
 	~Cannon();
 
+	void PostInitilize() { Ready(); }
 	void Update();
 	void Render(HDC hdc);
 
 	const Vector& GetCenter() { return _body->Center(); }
 
 	void Fire();
-	void Ready() { _barrel->SetCannon(shared_from_this()); }
 
 	bool IsFireReady() 
 	{
@@ -28,6 +28,7 @@ public:
 	}
 
 private:
+	void Ready() { _barrel->SetCannon(shared_from_this()); }
 	// 입력으로 좌우로 움직이게 만드는 함수
 	void InputMove();
 	// 입력으로 총신의 각도가 +,-가 되게 만드는 함수

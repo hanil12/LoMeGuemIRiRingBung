@@ -16,6 +16,7 @@ Cannon::Cannon()
 
 		_ballPool.push_back(ball);
 	}
+	// _barrel->SetCannon(shared_from_this()); // 캐논의 생성자에서 shared_from_this()... 
 }
 
 Cannon::~Cannon()

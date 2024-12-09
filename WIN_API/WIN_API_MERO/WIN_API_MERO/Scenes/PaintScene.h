@@ -5,8 +5,9 @@ public:
 	PaintScene();
 	~PaintScene();
 
-	void Update() override;
-	void Render(HDC hdc) override;
+	virtual void PostInitilize() override {}
+	virtual void Update() override;
+	virtual void Render(HDC hdc) override;
 
 private:
 	int _curColor = 0;

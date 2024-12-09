@@ -5,6 +5,7 @@ public:
 	CollisionScene();
 	~CollisionScene();
 
+	virtual void PostInitilize() override {}
 	void Update() override;
 	void Render(HDC hdc) override;
 
