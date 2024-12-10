@@ -7,11 +7,6 @@ RectCollider::RectCollider(Vector center, Vector size)
 	_type = Collider::Type::RECT;
 
 	_center = center;
-
-	_colors[0] = CreatePen(3, 3, RED);
-	_colors[1] = CreatePen(3, 3, GREEN);
-
-	SetGreen();
 }
 
 RectCollider::~RectCollider()
@@ -25,7 +20,8 @@ void RectCollider::Update()
 
 void RectCollider::Render(HDC hdc)
 {
-	SelectObject(hdc, _colors[_curColor]);
+	if(_curColor != 2)
+		SelectObject(hdc, _colors[_curColor]);
 
 	Rectangle(hdc, Left(), Top(), Right(), Bottom());
 }

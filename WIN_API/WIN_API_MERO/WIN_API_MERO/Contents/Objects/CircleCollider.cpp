@@ -8,11 +8,6 @@ CircleCollider::CircleCollider(Vector center, float radius)
 	_type = Collider::Type::CIRCLE;
 
 	_center = center;
-
-	_colors[0] = CreatePen(3,3,RED);
-	_colors[1] = CreatePen(3,3,GREEN);
-
-	SetGreen();
 }
 
 CircleCollider::~CircleCollider()
@@ -31,7 +26,8 @@ void CircleCollider::Render(HDC hdc)
 	int top  = _center.y - _radius;
 	int bottom = _center.y + _radius;
 
-	SelectObject(hdc, _colors[_curColor]);
+	if (_curColor != 2)
+		SelectObject(hdc, _colors[_curColor]);
 
 	Ellipse(hdc,left, top, right, bottom);
 }

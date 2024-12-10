@@ -147,9 +147,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Contents\GameObject\Maze\Block.h" />
     <ClInclude Include="Contents\GameObject\Ball.h" />
     <ClInclude Include="Contents\GameObject\Barrel.h" />
     <ClInclude Include="Contents\GameObject\Cannon.h" />
+    <ClInclude Include="Contents\GameObject\Maze\Maze.h" />
+    <ClInclude Include="Scenes\MazeScene.h" />
     <ClInclude Include="Scenes\FortressScene.h" />
     <ClInclude Include="Scenes\LineScene.h" />
     <ClInclude Include="Scenes\CannonScene.h" />
@@ -169,9 +172,12 @@
     <ClInclude Include="WIN_API_MERO.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Contents\GameObject\Maze\Block.cpp" />
     <ClCompile Include="Contents\GameObject\Ball.cpp" />
     <ClCompile Include="Contents\GameObject\Barrel.cpp" />
     <ClCompile Include="Contents\GameObject\Cannon.cpp" />
+    <ClCompile Include="Contents\GameObject\Maze\Maze.cpp" />
+    <ClCompile Include="Scenes\MazeScene.cpp" />
     <ClCompile Include="Scenes\FortressScene.cpp" />
     <ClCompile Include="Scenes\LineScene.cpp" />
     <ClCompile Include="Scenes\CannonScene.cpp" />

@@ -5,6 +5,11 @@
 
 Collider::Collider()
 {
+	_colors[0] = CreatePen(3, 3, RED);
+	_colors[1] = CreatePen(3, 3, GREEN);
+	_colors[2] = CreatePen(1,1, RGB(0,0,0));
+
+	SetGreen();
 }
 
 Collider::~Collider()

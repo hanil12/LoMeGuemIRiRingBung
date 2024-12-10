@@ -6,6 +6,7 @@
 #include "Scenes/CannonScene.h"
 #include "Scenes/LineScene.h"
 #include "Scenes/FortressScene.h"
+#include "Scenes/MazeScene.h"
 
 Program::Program()
 {
@@ -14,8 +15,9 @@ Program::Program()
     _sceneTable["CannonScene"] = make_shared<CannonScene>();
     _sceneTable["LineScene"] = make_shared<LineScene>();
     _sceneTable["FortressScene"] = make_shared<FortressScene>();
+    _sceneTable["MazeScene"] = make_shared<MazeScene>();
 
-    _curScene = "FortressScene";
+    _curScene = "MazeScene";
 
     _sceneTable[_curScene]->PostInitilize();
 }
