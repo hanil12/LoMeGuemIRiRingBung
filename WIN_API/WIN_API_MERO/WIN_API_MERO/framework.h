@@ -18,6 +18,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <string>
+#include <functional>
 
 using namespace std;
 
@@ -39,3 +40,4 @@ using namespace std;
 #include "Program/Program.h"
 
 extern Vector mousePos;
+extern HWND hWnd;

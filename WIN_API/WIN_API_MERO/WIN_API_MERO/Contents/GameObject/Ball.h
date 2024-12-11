@@ -17,6 +17,8 @@ public:
 	bool IsActive() { return _isActive; }
 	bool IsOut();
 
+	shared_ptr<Collider> GetCollider() { return _ball; }
+
 private:
 	bool _isActive = false;
 

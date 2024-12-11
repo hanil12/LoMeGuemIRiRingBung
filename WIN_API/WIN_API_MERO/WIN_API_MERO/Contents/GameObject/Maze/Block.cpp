@@ -3,7 +3,7 @@
 
 Block::Block()
 {
-	_rect = make_shared<RectCollider>(Vector(300,300), Vector(12,12));
+	_rect = make_shared<RectCollider>(Vector(300,300), Vector(17,17));
 	_rect->SetBlack();
 
 	_brushes.push_back(CreateSolidBrush(RGB(255,255,255)));

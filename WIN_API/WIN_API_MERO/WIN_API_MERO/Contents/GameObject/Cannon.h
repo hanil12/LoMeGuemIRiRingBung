@@ -13,7 +13,8 @@ public:
 
 	const Vector& GetCenter() { return _body->Center(); }
 
-	void Fire();
+	void Fire(bool& turn);
+	void Move();
 
 	bool IsFireReady() 
 	{
@@ -26,6 +27,10 @@ public:
 
 		return false;
 	}
+
+	void SetFireEvent(function<void(shared_ptr<Cannon>)> event) { _fireEvent = event; }
+
+	void IsDamaged(shared_ptr<class Ball> ball);
 
 private:
 	void Ready() { _barrel->SetCannon(shared_from_this()); }
@@ -43,5 +48,11 @@ private:
 
 	float _fireDelay = 1.0f; // 1초를 정확히 할 수 있을까? X
 	float _fireTime = 0.0f;
+
+	// Delegate
+	function<void(shared_ptr<Cannon>)> _fireEvent; // 전역함수 OK, 멤버함수 OK, 함수객체 OK => 모든 Callable 객체를 담을 수 있는 함수 포인터
+	//using FUNC = void(*)(void); // 전역함수 매개변수 void, 반환자료형 void를 저장할 수 있는 함수 포인터
+	//template<typename T>
+	//using FUNC_SCENE = void(T::*)(void); // Scene의 멤버함수 매개변수(void), 반환자료형 void 함수를 저장할 수 있는 함수포인터
 };
 

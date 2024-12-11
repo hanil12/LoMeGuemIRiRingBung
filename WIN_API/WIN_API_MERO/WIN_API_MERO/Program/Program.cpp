@@ -8,8 +8,16 @@
 #include "Scenes/FortressScene.h"
 #include "Scenes/MazeScene.h"
 
+HDC Program::backBuffer = nullptr;
+
 Program::Program()
 {
+    HDC hdc = GetDC(hWnd);
+
+    backBuffer = CreateCompatibleDC(hdc);
+    _hBitMap = CreateCompatibleBitmap(hdc, WIN_WIDTH, WIN_HEIGHT); // 도화지
+    SelectObject(backBuffer, _hBitMap);
+
     _sceneTable["PaintScene"] = make_shared<PaintScene>();
     _sceneTable["CollisionScene"] = make_shared<CollisionScene>();
     _sceneTable["CannonScene"] = make_shared<CannonScene>();
@@ -24,6 +32,8 @@ Program::Program()
 
 Program::~Program()
 {
+    DeleteObject(backBuffer);
+    DeleteObject(_hBitMap);
 }
 
 void Program::Update()
@@ -33,5 +43,19 @@ void Program::Update()
 
 void Program::Render(HDC hdc)
 {
-    _sceneTable[_curScene]->Render(hdc);
+    PatBlt(backBuffer, 0, 0, WIN_WIDTH, WIN_HEIGHT, BLACKNESS);
+
+    // 그림을 그림
+    _sceneTable[_curScene]->Render(backBuffer);
+
+    // 복사
+    BitBlt
+    (
+        hdc,
+        0,0,
+        WIN_WIDTH, WIN_HEIGHT,
+        backBuffer,
+        0,0,
+        SRCCOPY
+    );
 }

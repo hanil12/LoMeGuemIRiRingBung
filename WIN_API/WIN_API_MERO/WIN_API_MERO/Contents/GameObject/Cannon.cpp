@@ -33,12 +33,6 @@ void Cannon::Update()
 	{
 		ball->Update();
 	}
-
-	InputMove(); // 입력해서 움직이게
-	InputBarrelRotation(); // 입력으로 총싱 각도 조정
-
-	if(IsFireReady())
-		Fire();
 }
 
 // GPU
@@ -52,7 +46,7 @@ void Cannon::Render(HDC hdc)
 	}
 }
 
-void Cannon::Fire()
+void Cannon::Fire(bool& turn)
 {
 	// 0b 1000 0000 0000 0001
 	// 0b 0111 0000 0000 0001
@@ -68,6 +62,26 @@ void Cannon::Fire()
 		if(iter == _ballPool.end()) return;
 
 		(*iter)->Fire(_barrel->GetMuzzle(), _barrel->GetDirection());
+
+		turn = !turn;
+
+		if(_fireEvent != nullptr)
+			_fireEvent(shared_from_this());
+	}
+}
+
+void Cannon::Move()
+{
+	InputMove(); // 입력해서 움직이게
+	InputBarrelRotation(); // 입력으로 총싱 각도 조정
+}
+
+void Cannon::IsDamaged(shared_ptr<class Ball> ball)
+{
+	if (ball->GetCollider()->IsCollision(_body))
+	{
+		// 충돌했다.
+		// _hp -= 1;
 	}
 }
 
