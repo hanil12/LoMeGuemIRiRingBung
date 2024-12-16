@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <string>
 #include <functional>
+#include <time.h>
 
 using namespace std;
 
@@ -38,6 +39,9 @@ using namespace std;
 
 // Program
 #include "Program/Program.h"
+
+// GameContents
+#include "Contents/GameObject/Maze/MazeVector.h"
 
 extern Vector mousePos;
 extern HWND hWnd;

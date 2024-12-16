@@ -81,6 +81,18 @@ public:
         return *this;
     }
 
+    bool operator==(const Vector& other)
+    {
+        if(x != other.x) return false;
+        if(y != other.y) return false;
+
+        return true;
+    }
+    bool operator!=(const Vector& other)
+    {
+        return !this->operator==(other);
+    }
+
     void Normalize()
     {
         float length = Length();

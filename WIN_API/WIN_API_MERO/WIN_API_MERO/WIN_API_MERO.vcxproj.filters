@@ -84,6 +84,12 @@
     <ClInclude Include="Contents\GameObject\Maze\Maze.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Contents\GameObject\Maze\MazePlayer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\GameObject\Maze\MazeVector.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WIN_API_MERO.cpp">
@@ -141,6 +147,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Contents\GameObject\Maze\Maze.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\GameObject\Maze\MazePlayer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\GameObject\Maze\MazeVector.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

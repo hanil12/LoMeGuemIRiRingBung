@@ -152,6 +152,8 @@
     <ClInclude Include="Contents\GameObject\Barrel.h" />
     <ClInclude Include="Contents\GameObject\Cannon.h" />
     <ClInclude Include="Contents\GameObject\Maze\Maze.h" />
+    <ClInclude Include="Contents\GameObject\Maze\MazePlayer.h" />
+    <ClInclude Include="Contents\GameObject\Maze\MazeVector.h" />
     <ClInclude Include="Scenes\MazeScene.h" />
     <ClInclude Include="Scenes\FortressScene.h" />
     <ClInclude Include="Scenes\LineScene.h" />
@@ -177,6 +179,8 @@
     <ClCompile Include="Contents\GameObject\Barrel.cpp" />
     <ClCompile Include="Contents\GameObject\Cannon.cpp" />
     <ClCompile Include="Contents\GameObject\Maze\Maze.cpp" />
+    <ClCompile Include="Contents\GameObject\Maze\MazePlayer.cpp" />
+    <ClCompile Include="Contents\GameObject\Maze\MazeVector.cpp" />
     <ClCompile Include="Scenes\MazeScene.cpp" />
     <ClCompile Include="Scenes\FortressScene.cpp" />
     <ClCompile Include="Scenes\LineScene.cpp" />

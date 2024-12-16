@@ -12,6 +12,8 @@ HDC Program::backBuffer = nullptr;
 
 Program::Program()
 {
+    srand(time(nullptr));
+
     HDC hdc = GetDC(hWnd);
 
     backBuffer = CreateCompatibleDC(hdc);
