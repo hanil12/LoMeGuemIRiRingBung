@@ -25,7 +25,8 @@ void MazePlayer::Update()
         _pathIndex++;
     }
 
-    _maze->SetBlockType(_pos.y, _pos.x, Block::Block::NONE);
+    // 현재 플레이어 위치
+    _maze->SetBlockType(_pos.y, _pos.x, Block::Block::PLAYER);
 }
 
 void MazePlayer::SetMaze(shared_ptr<Maze> maze)
@@ -99,6 +100,8 @@ void MazePlayer::RightHand()
             _dir = static_cast<Dir>(leftDir);
         }
     }
+
+    _pos = _startPos;
 }
 
 bool MazePlayer::CanGo(int y, int x)
