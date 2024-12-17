@@ -2,6 +2,7 @@
 #include "MazePlayer.h"
 #include "Contents/GameObject/Maze/Maze.h"
 #include "Contents/GameObject/Maze/Block.h"
+#include <stack>
 
 MazePlayer::MazePlayer()
 {
@@ -20,6 +21,7 @@ void MazePlayer::Update()
     if (_time > 1.0f)
     {
         _time = 0.0f;
+        _maze->SetBlockType(_pos.y, _pos.x, Block::BlockType::FOOT_PRINT);
         _pos = _path[_pathIndex];
 
         _pathIndex++;
@@ -100,6 +102,30 @@ void MazePlayer::RightHand()
             _dir = static_cast<Dir>(leftDir);
         }
     }
+
+    stack<Vector> s;
+
+    for (int i = 0; i < _path.size() - 1; i++)
+    {
+        if(s.empty() == false && s.top() == _path[i + 1])
+            s.pop();
+        else
+            s.push(_path[i]);
+    }
+
+    s.push(_path.back());
+    // s ... 사이클(갔다가 돌아오는 길)이였으면 Pop
+
+    _path.clear();
+    while (true)
+    {
+        _path.push_back(s.top());
+        s.pop();
+
+        if(s.empty())
+            break;
+    }
+    std::reverse(_path.begin(), _path.end());
 
     _pos = _startPos;
 }

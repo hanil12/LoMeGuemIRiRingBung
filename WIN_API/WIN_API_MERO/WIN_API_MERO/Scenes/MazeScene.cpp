@@ -20,6 +20,11 @@ void MazeScene::PostInitilize()
 	_player->SetMaze(_maze);
 	_player->Init();
 	_player->RightHand();
+
+	Vector endPos = _maze->GetEndPos();
+	Vector startPos = _maze->GetStartPos();
+	_maze->SetBlockType(endPos.y, endPos.x, Block::BlockType::END);
+	_maze->SetBlockType(startPos.y, startPos.x, Block::BlockType::START);
 }
 
 void MazeScene::Update()

@@ -12,7 +12,10 @@
 #define GREEN		 RGB(0,255,0)
 #define BLUE		 RGB(0,0,255)
 #define WHITE		 RGB(255,255,255)
-#define SAND_DOLLAR	 RGB(222,205,187)
+#define BLACK		 RGB(0,0,0)
+#define GREY		 RGB(100,100,100)
+#define SAND_DOLLAR	 RGB(150,120,100)
+#define CYAN		 RGB(0,150,150)
 
 using int16 = short;
 using int32 = int;

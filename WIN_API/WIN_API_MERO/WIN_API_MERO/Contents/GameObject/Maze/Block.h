@@ -8,7 +8,9 @@ public:
 		ABLE,
 		DISABLE,
 		PLAYER,
-		FOOT_PRINT
+		FOOT_PRINT,
+		START,
+		END
 	};
 
 	Block();
