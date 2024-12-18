@@ -130,6 +130,12 @@ void MazePlayer::RightHand()
     _pos = _startPos;
 }
 
+void MazePlayer::DFS()
+{
+    // TODO : °úÁ¦
+
+}
+
 bool MazePlayer::CanGo(int y, int x)
 {
 

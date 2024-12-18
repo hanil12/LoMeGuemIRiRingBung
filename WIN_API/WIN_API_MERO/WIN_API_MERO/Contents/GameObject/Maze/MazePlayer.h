@@ -23,6 +23,7 @@ public:
 	void Init();
 
 	void RightHand();
+	void DFS();
 
 	bool CanGo(int y, int x);
 
