@@ -19,7 +19,7 @@ void MazeScene::PostInitilize()
 {
 	_player->SetMaze(_maze);
 	_player->Init();
-	_player->RightHand();
+	_player->FindPath_DFS();
 
 	Vector endPos = _maze->GetEndPos();
 	Vector startPos = _maze->GetStartPos();

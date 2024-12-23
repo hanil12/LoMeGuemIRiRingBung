@@ -51,7 +51,7 @@ void MazePlayer::Init()
     }
 }
 
-void MazePlayer::RightHand()
+void MazePlayer::FindPath_RightHand()
 {
     // 우수법으로 갈 수 있는 경로(pos)들을 _path에다가 담아놓을 예정
     _pos = _startPos;
@@ -130,10 +130,29 @@ void MazePlayer::RightHand()
     _pos = _startPos;
 }
 
-void MazePlayer::DFS()
+void MazePlayer::FindPath_DFS()
 {
     // TODO : 과제
+    // 1. adjcent...
+    Vector frontPos[4] =
+    {
+        Vector{0, -1}, // UP
+        Vector{-1, 0}, // LEFT
+        Vector{0,1}, // DOWN
+        Vector{1,0} // RIGHT
+    };
 
+    Vector start = _maze->GetStartPos();
+    Vector end = _maze->GetEndPos(); // DFS용 부적합
+
+    // 방문 처리
+    _visited = vector<vector<bool>>(MAX_Y, vector<bool>(MAX_X, false));
+    _pos = start;
+
+    // 첫 시작점 세팅
+    _visited[start.y][start.x] = true;
+    _path.push_back(start);
+    DFS(_pos.y, _pos.x, end);
 }
 
 bool MazePlayer::CanGo(int y, int x)
@@ -157,4 +176,43 @@ bool MazePlayer::CanGo(int y, int x)
     }
 
     return false;
+}
+
+void MazePlayer::DFS(int y, int x, const Vector& endPos)
+{
+    // 기저 사항
+    Vector here = Vector(x, y);
+    if(here == _endPos)
+        return;
+
+    Vector frontPos[4] =
+    {
+        Vector{0,1}, // DOWN
+        Vector{1,0}, // RIGHT
+        Vector{0, -1}, // UP
+        Vector{-1, 0} // LEFT
+    };
+
+
+    _visited[y][x] = true;
+
+    // DFS
+    for (int i = 0; i < 4; i++)
+    {
+        Vector there = here + frontPos[i];
+
+        // 인접해있는지? , 혹은 갈 수 있는 길인지
+        if (CanGo(there.y, there.x) == false)
+            continue;
+
+        // 방문되어있는지?
+        if (_visited[there.y][there.x] == true)
+            continue;
+
+        if(there == endPos)
+            return;
+
+        _path.push_back(there);
+        DFS(there.y, there.x, endPos);
+    }
 }

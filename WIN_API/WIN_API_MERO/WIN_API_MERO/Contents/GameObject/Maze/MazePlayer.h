@@ -22,10 +22,11 @@ public:
 	void SetMaze(shared_ptr<Maze> maze);
 	void Init();
 
-	void RightHand();
-	void DFS();
+	void FindPath_RightHand();
+	void FindPath_DFS();
 
 	bool CanGo(int y, int x);
+	void DFS(int y, int x, const Vector& endPos);
 
 private:
 	shared_ptr<Maze> _maze;
@@ -39,5 +40,10 @@ private:
 	float _time = 0.0f;
 
 	vector<Vector> _path; // 찾은 길에 대한 정보
+
+	// DFS 정보
+	// adjacent 행렬
+	// visited ...
+	vector<vector<bool>> _visited;
 };
 
