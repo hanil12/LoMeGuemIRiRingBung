@@ -28,7 +28,7 @@ void CreateGraph_Matrix()
 
 	adjacent[1][0] = true;
 	adjacent[1][1] = true;
-	//adjacent[1][4] = true;
+	adjacent[1][4] = true;
 	adjacent[1][5] = true;
 
 	adjacent[2][0] = true;
@@ -38,7 +38,7 @@ void CreateGraph_Matrix()
 	adjacent[3][2] = true;
 	adjacent[3][3] = true;
 
-	//adjacent[4][1] = true;
+	adjacent[4][1] = true;
 	adjacent[4][4] = true;
 	adjacent[4][6] = true;
 
@@ -109,7 +109,7 @@ int main()
 			break;
 		}
 
-		if (parent[check] == 0)
+		if (check == 0)
 		{
 			cout << "0과 6이 연결되어있습니다." << endl;
 			count++;
@@ -117,6 +117,7 @@ int main()
 			break;
 		}
 
+		cout << check << endl;
 		check = parent[check];
 		count++;
 	}
