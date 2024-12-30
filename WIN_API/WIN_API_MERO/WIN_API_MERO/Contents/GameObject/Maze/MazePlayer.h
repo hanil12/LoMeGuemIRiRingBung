@@ -14,6 +14,14 @@ public:
 		DIR_COUNT = 4
 	};
 
+	struct Vertex
+	{
+		int y;
+		int x;
+
+		int g;
+	};
+
 	MazePlayer();
 	~MazePlayer();
 
@@ -24,9 +32,11 @@ public:
 
 	void FindPath_RightHand();
 	void FindPath_DFS();
+	void FindPath_BFS();
 
 	bool CanGo(int y, int x);
 	void DFS(int y, int x, const Vector& endPos);
+	void BFS(int y, int x, const Vector& endPos);
 
 private:
 	shared_ptr<Maze> _maze;

@@ -38,7 +38,7 @@ void MazePlayer::SetMaze(shared_ptr<Maze> maze)
 
 void MazePlayer::Init()
 {
-    _pos = {0,0};
+    _pos = {1,1};
     _pathIndex = 0;
     _time = 0.0f;
     _dir = Dir::UP;
@@ -155,6 +155,11 @@ void MazePlayer::FindPath_DFS()
     DFS(_pos.y, _pos.x, end);
 }
 
+void MazePlayer::FindPath_BFS()
+{
+    BFS(1,1, _maze->GetEndPos());
+}
+
 bool MazePlayer::CanGo(int y, int x)
 {
 
@@ -215,4 +220,67 @@ void MazePlayer::DFS(int y, int x, const Vector& endPos)
         _path.push_back(there);
         DFS(there.y, there.x, endPos);
     }
+}
+
+void MazePlayer::BFS(int y, int x, const Vector& endPos)
+{
+    Vector frontPos[4] =
+    {
+        Vector{0,1}, // DOWN
+        Vector{1,0}, // RIGHT
+        Vector{0, -1}, // UP
+        Vector{-1, 0} // LEFT
+    };
+
+    vector<vector<Vector>> parent = vector<vector<Vector>>(MAX_Y, vector<Vector>(MAX_X, Vector(-1,-1)));
+    vector<vector<bool>> discovered = vector<vector<bool>>(MAX_Y, vector<bool>(MAX_X, false));
+    queue<Vector> q;
+
+    // 1,1
+    parent[1][1] = Vector(1,1);
+    discovered[1][1] = true;
+    q.push(Vector(1,1));
+
+    while (true)
+    {
+        if(q.empty())
+            break;
+
+        Vector here = q.front();
+        q.pop();
+
+        if (here == endPos)
+        {
+            break;
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            Vector there = here + frontPos[i];
+
+            // 인접해있냐?
+            if(CanGo(there.y, there.x) == false)
+                continue;
+            if(discovered[there.y][there.x])
+                continue;
+
+            discovered[there.y][there.x] = true;
+            parent[there.y][there.x] = here;
+            q.push(there);
+        }
+    }
+
+    Vector check = endPos;
+    while (true)
+    {
+        _path.push_back(check);
+        if (parent[check.y][check.x] == check)
+        {
+            break;
+        }
+
+        check = parent[check.y][check.x];
+    }
+
+    std::reverse(_path.begin(), _path.end());
 }
