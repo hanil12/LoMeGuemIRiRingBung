@@ -14,12 +14,45 @@ public:
 		DIR_COUNT = 4
 	};
 
-	struct Vertex
+	struct Vertex_Djikstra
 	{
+		Vertex_Djikstra(int y, int x, int g) : y(y), x(x), g(g) {}
+
 		int y;
 		int x;
 
 		int g;
+
+		bool operator<(const Vertex_Djikstra& other) const
+		{
+			return g < other.g;
+		}
+
+		bool operator>(const Vertex_Djikstra& other) const
+		{
+			return g > other.g;
+		}
+	};
+
+	struct Vertex
+	{
+		Vertex(int y, int x) : y(y), x(x) {}
+
+		int y;
+		int x;
+
+		float g = 0.0f;
+		float h = 0.0f; // ÈÞ¸®½ºÆ½ ÇÔ¼ö
+		float f = 0.0f; // g + h
+
+		bool operator<(const Vertex& other) const
+		{
+			return f < other.f;
+		}
+		bool operator>(const Vertex& other) const
+		{
+			return f > other.f;
+		}
 	};
 
 	MazePlayer();
@@ -33,10 +66,14 @@ public:
 	void FindPath_RightHand();
 	void FindPath_DFS();
 	void FindPath_BFS();
+	void FindPath_Djikstra();
+	void FindPath_Astart();
 
 	bool CanGo(int y, int x);
 	void DFS(int y, int x, const Vector& endPos);
 	void BFS(int y, int x, const Vector& endPos);
+	void Djikstra(int y, int x, const Vector& endPos);
+	void Astart(int y, int x, const Vector& endPos);
 
 private:
 	shared_ptr<Maze> _maze;

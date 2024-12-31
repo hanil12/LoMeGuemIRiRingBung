@@ -14,10 +14,17 @@ MazePlayer::~MazePlayer()
 
 void MazePlayer::Update()
 {
-    if(_pathIndex >= _path.size())
-        return;
+    if (_pathIndex >= _path.size())
+    {
+        _maze->CreateMaze();
+        Init();
+        FindPath_Astar();
+        _maze->SetBlockType(_maze->GetEndPos().y, _maze->GetEndPos().x, Block::BlockType::END);
 
-    _time += 0.1f;
+        return;
+    }
+
+    _time += 0.2f;
     if (_time > 1.0f)
     {
         _time = 0.0f;
@@ -160,6 +167,16 @@ void MazePlayer::FindPath_BFS()
     BFS(1,1, _maze->GetEndPos());
 }
 
+void MazePlayer::FindPath_Djikstra()
+{
+    Djikstra(1,1,_maze->GetEndPos());
+}
+
+void MazePlayer::FindPath_Astar()
+{
+    Astart(1,1,_maze->GetEndPos());
+}
+
 bool MazePlayer::CanGo(int y, int x)
 {
 
@@ -224,12 +241,16 @@ void MazePlayer::DFS(int y, int x, const Vector& endPos)
 
 void MazePlayer::BFS(int y, int x, const Vector& endPos)
 {
-    Vector frontPos[4] =
+    Vector frontPos[8] =
     {
         Vector{0,1}, // DOWN
         Vector{1,0}, // RIGHT
         Vector{0, -1}, // UP
-        Vector{-1, 0} // LEFT
+        Vector{-1, 0}, // LEFT
+        Vector{1,1}, // RIGHTDOWN
+        Vector{1,-1}, // RIGHT UP
+        Vector{-1, -1}, // LEFT UP
+        Vector{-1, 1} // LEFT DOWN
     };
 
     vector<vector<Vector>> parent = vector<vector<Vector>>(MAX_Y, vector<Vector>(MAX_X, Vector(-1,-1)));
@@ -249,12 +270,13 @@ void MazePlayer::BFS(int y, int x, const Vector& endPos)
         Vector here = q.front();
         q.pop();
 
+        _maze->SetBlockType(here.y, here.x, Block::BlockType::FOOT_PRINT);
         if (here == endPos)
         {
             break;
         }
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 8; i++)
         {
             Vector there = here + frontPos[i];
 
@@ -267,6 +289,176 @@ void MazePlayer::BFS(int y, int x, const Vector& endPos)
             discovered[there.y][there.x] = true;
             parent[there.y][there.x] = here;
             q.push(there);
+        }
+    }
+
+    Vector check = endPos;
+    while (true)
+    {
+        _path.push_back(check);
+        if (parent[check.y][check.x] == check)
+        {
+            break;
+        }
+
+        check = parent[check.y][check.x];
+    }
+
+    std::reverse(_path.begin(), _path.end());
+}
+
+void MazePlayer::Djikstra(int y, int x, const Vector& endPos)
+{
+    Vector frontPos[8] =
+    {
+        Vector{0,1}, // DOWN
+        Vector{1,0}, // RIGHT
+        Vector{0, -1}, // UP
+        Vector{-1, 0}, // LEFT
+        Vector{1,1}, // RIGHTDOWN
+        Vector{1,-1}, // RIGHT UP
+        Vector{-1, -1}, // LEFT UP
+        Vector{-1, 1} // LEFT DOWN
+    };
+
+    vector<vector<Vector>> parent = vector<vector<Vector>>(MAX_Y, vector<Vector>(MAX_X, Vector(-1, -1)));
+    vector<vector<bool>> discovered = vector<vector<bool>>(MAX_Y, vector<bool>(MAX_X, false));
+    vector<vector<int>> best = vector<vector<int>>(MAX_Y, vector<int>(MAX_X, INT_MAX));
+    auto temp = [](const Vertex_Djikstra& a, const Vertex_Djikstra& b)-> bool { return false; };
+    priority_queue<Vertex_Djikstra, vector<Vertex_Djikstra>, greater<Vertex_Djikstra>> pq;
+
+    // 1,1
+    parent[1][1] = Vector(1, 1);
+    best[1][1] = 0;
+    discovered[1][1] = true;
+    Vertex_Djikstra startV(1,1,0);
+    pq.push(startV);
+
+    while (true)
+    {
+        if(pq.empty()) break;
+
+        Vertex_Djikstra hereV = pq.top();
+        pq.pop();
+
+        if(hereV.x == endPos.x && hereV.y == endPos.y)
+            break;
+
+        _maze->SetBlockType(hereV.y, hereV.x, Block::BlockType::FOOT_PRINT);
+
+        // 예약을 했었던 얘를 봤는데 전에 발견한 경로가 더 좋은 경로였다.
+        if(best[hereV.y][hereV.x] < hereV.g)
+            continue;
+
+        for (int i = 0; i < 8; i++)
+        {
+            Vector there = Vector(hereV.x, hereV.y) + frontPos[i];
+
+            // 인접
+            if(!CanGo(there.y, there.x)) continue;
+            // cost 구하기
+            int newCost = 0;
+            if(i < 4)
+                newCost = best[hereV.y][hereV.x] + 10;
+            else
+                newCost = best[hereV.y][hereV.x] + 14;
+            // 예약자체 취소
+            if(best[there.y][there.x] < newCost)
+                continue;
+
+            Vertex_Djikstra thereV(there.y, there.x, newCost);
+            pq.push(thereV);
+            parent[there.y][there.x] = Vector(hereV.x, hereV.y);
+            best[there.y][there.x] = newCost;
+        }
+    }
+
+    Vector check = endPos;
+    while (true)
+    {
+        _path.push_back(check);
+        if (parent[check.y][check.x] == check)
+        {
+            break;
+        }
+
+        check = parent[check.y][check.x];
+    }
+
+    std::reverse(_path.begin(), _path.end());
+}
+
+void MazePlayer::Astart(int y, int x, const Vector& endPos)
+{
+    Vector frontPos[8] =
+    {
+        Vector{0,1}, // DOWN
+        Vector{1,0}, // RIGHT
+        Vector{0, -1}, // UP
+        Vector{-1, 0}, // LEFT
+        Vector{1,1}, // RIGHTDOWN
+        Vector{1,-1}, // RIGHT UP
+        Vector{-1, -1}, // LEFT UP
+        Vector{-1, 1} // LEFT DOWN
+    };
+
+    vector<vector<Vector>> parent = vector<vector<Vector>>(MAX_Y, vector<Vector>(MAX_X, Vector(-1, -1)));
+    vector<vector<bool>> discovered = vector<vector<bool>>(MAX_Y, vector<bool>(MAX_X, false));
+    vector<vector<float>> best = vector<vector<float>>(MAX_Y, vector<float>(MAX_X, 100000.0f));
+    auto temp = [](const Vertex_Djikstra& a, const Vertex_Djikstra& b)-> bool { return false; };
+    priority_queue<Vertex, vector<Vertex>, greater<Vertex>> pq;
+
+    // 1,1
+    parent[1][1] = Vector(1, 1);
+    discovered[1][1] = true;
+    Vertex startV(1, 1);
+    startV.g = 0.0f;
+    startV.h = (endPos - Vector(1,1)).Length();
+    startV.f = startV.g + startV.h;
+
+    best[1][1] = startV.f;
+    pq.push(startV);
+
+    while (true)
+    {
+        if(pq.empty()) break;
+
+        Vertex hereV = pq.top();
+        pq.pop();
+
+        if(hereV.y == endPos.y && hereV.x == endPos.x)
+            break;
+
+        _maze->SetBlockType(hereV.y, hereV.x, Block::BlockType::FOOT_PRINT);
+
+        if(best[hereV.y][hereV.x] < hereV.f)
+            continue;
+
+        for (int i = 0; i < 8; i++)
+        {
+            Vector there = Vector(hereV.x, hereV.y) + frontPos[i];
+
+            if(CanGo(there.y, there.x) == false) continue;
+
+            float newCostG;
+            if(i < 4)
+                newCostG = hereV.g + 1.0f;
+            else 
+                newCostG = hereV.g + 1.4f;
+
+            float newCostH = (endPos - there).Length(); // 우리의 휴리스틱
+            float newCost = newCostG + newCostH;
+
+            if(best[there.y][there.x] < newCost) continue;
+
+            Vertex thereV(there.y, there.x);
+            thereV.g = newCostG;
+            thereV.h = newCostH;
+            thereV.f = newCost;
+
+            pq.push(thereV);
+            parent[there.y][there.x] = Vector(hereV.x, hereV.y);
+            best[there.y][there.x] = newCost;
         }
     }
 
