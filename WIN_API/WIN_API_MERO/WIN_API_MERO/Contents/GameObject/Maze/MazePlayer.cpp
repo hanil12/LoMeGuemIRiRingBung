@@ -174,7 +174,7 @@ void MazePlayer::FindPath_Djikstra()
 
 void MazePlayer::FindPath_Astar()
 {
-    Astart(1,1,_maze->GetEndPos());
+    Astar(1,1,_maze->GetEndPos()); // A*
 }
 
 bool MazePlayer::CanGo(int y, int x)
@@ -388,7 +388,7 @@ void MazePlayer::Djikstra(int y, int x, const Vector& endPos)
     std::reverse(_path.begin(), _path.end());
 }
 
-void MazePlayer::Astart(int y, int x, const Vector& endPos)
+void MazePlayer::Astar(int y, int x, const Vector& endPos)
 {
     Vector frontPos[8] =
     {

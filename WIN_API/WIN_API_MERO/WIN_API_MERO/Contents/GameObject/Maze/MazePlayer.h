@@ -67,13 +67,13 @@ public:
 	void FindPath_DFS();
 	void FindPath_BFS();
 	void FindPath_Djikstra();
-	void FindPath_Astart();
+	void FindPath_Astar();
 
 	bool CanGo(int y, int x);
 	void DFS(int y, int x, const Vector& endPos);
 	void BFS(int y, int x, const Vector& endPos);
 	void Djikstra(int y, int x, const Vector& endPos);
-	void Astart(int y, int x, const Vector& endPos);
+	void Astar(int y, int x, const Vector& endPos);
 
 private:
 	shared_ptr<Maze> _maze;
