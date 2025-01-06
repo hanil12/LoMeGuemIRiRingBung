@@ -1,4 +1,7 @@
 #include "framework.h"
+
+#include "Math/DisJointSet.h"
+
 #include "Maze.h"
 #include "Block.h"
 
@@ -6,10 +9,10 @@ Maze::Maze()
 {
 	Vector offset = Vector(400,100);
 
-	_blocks.resize(25);
+	_blocks.resize(MAX_Y);
 	for (int y = 0; y < MAX_Y; y++)
 	{
-		_blocks[y].reserve(25);
+		_blocks[y].reserve(MAX_X);
 		for (int x = 0; x < MAX_X; x++)
 		{
 			shared_ptr<Block> block = make_shared<Block>();
@@ -23,7 +26,7 @@ Maze::Maze()
 		}
 	}
 
-	CreateMaze();
+	CreateMaze_Kruskal();
 }
 
 Maze::~Maze()
@@ -112,5 +115,87 @@ void Maze::CreateMaze()
 			else
 				_blocks[y+1][x]->SetType(Block::BlockType::ABLE); // 아래쪽 뚫기
 		}
+	}
+}
+
+void Maze::CreateMaze_Kruskal()
+{
+	for (int y = 0; y < MAX_Y; y++)
+	{
+		for (int x = 0; x < MAX_X; x++)
+		{
+			if (x % 2 == 0 || y % 2 == 0)
+			{
+				_blocks[y][x]->SetType(Block::BlockType::DISABLE);
+			}
+			else
+			{
+				_blocks[y][x]->SetType(Block::BlockType::ABLE);
+			}
+		}
+	}
+
+	// Edge를 만드는 작업
+	vector<Edge> edges;
+	for (int y = 0; y < MAX_Y; y++)
+	{
+		for (int x = 0; x < MAX_X; x++)
+		{
+			// 노드가 아니면 PASS
+			if(x % 2 == 0 || y % 2 == 0)
+				continue;
+
+			// 오른쪽으로가는 edge정보들 넣어주기
+			if (x < MAX_X - 2)
+			{
+				int randCost = rand() % 100;
+
+				Edge edge;
+				edge.cost = randCost;
+				edge.u = Vector(x,y);
+				edge.v = Vector(x + 2, y);
+
+				edges.push_back(edge);
+			}
+
+			// 아래로 가는 간선들의 정보 넣어주기
+			if (y < MAX_Y - 2)
+			{
+				int randCost = rand() % 100;
+
+				Edge edge;
+				edge.cost = randCost;
+				edge.u = Vector(x,y);
+				edge.v = Vector(x, y + 2);
+
+				edges.push_back(edge);
+			}
+		}
+	}
+
+	// Sorting
+	std::sort(edges.begin(), edges.end(), [](const Edge& a, const Edge& b)->bool 
+	{
+		if(a.cost < b.cost)
+			return true;
+		return false;
+	});
+
+	DisJointSet set((MAX_Y + 1) * MAX_X);
+	for (auto& edge : edges)
+	{
+		int u = edge.u.y * (MAX_Y) + edge.u.x;
+		int v = edge.v.y * (MAX_Y) + edge.v.x;
+
+		if(set.FindLeader(u) == set.FindLeader(v))
+			continue;
+
+		set.Merge(u,v);
+
+		// 연결점 찾기
+		int x = ((int)edge.v.x + (int)edge.u.x) / 2;
+		int y = ((int)edge.v.y + (int)edge.u.y) / 2;
+
+		_blocks[y][x]->SetType(Block::BlockType::ABLE);
 	}
 }

@@ -154,6 +154,7 @@
     <ClInclude Include="Contents\GameObject\Maze\Maze.h" />
     <ClInclude Include="Contents\GameObject\Maze\MazePlayer.h" />
     <ClInclude Include="Contents\GameObject\Maze\MazeVector.h" />
+    <ClInclude Include="Math\DisJointSet.h" />
     <ClInclude Include="Scenes\MazeScene.h" />
     <ClInclude Include="Scenes\FortressScene.h" />
     <ClInclude Include="Scenes\LineScene.h" />

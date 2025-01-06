@@ -9,7 +9,7 @@ Block::Block()
 	_brushes.push_back(CreateSolidBrush(RGB(255,255,255)));
 	_brushes.push_back(CreateSolidBrush(GREEN));
 	_brushes.push_back(CreateSolidBrush(RED));
-	_brushes.push_back(CreateSolidBrush(SAND_DOLLAR));
+	_brushes.push_back(CreateSolidBrush(BLACK));
 	_brushes.push_back(CreateSolidBrush(CYAN));
 	_brushes.push_back(CreateSolidBrush(WHITE));
 	_brushes.push_back(CreateSolidBrush(GREY));

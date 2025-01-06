@@ -2,12 +2,20 @@
 
 #include "Contents/GameObject/Maze/Block.h"
 
-#define MAX_X 25
-#define MAX_Y 25
+#define MAX_X 31
+#define MAX_Y 31
 
 class Maze
 {
 public:
+	struct Edge
+	{
+		Vector u;
+		Vector v;
+
+		float cost;
+	};
+
 	Maze();
 	~Maze();
 
@@ -15,6 +23,7 @@ public:
 	void Render(HDC hdc);
 
 	void CreateMaze();
+	void CreateMaze_Kruskal();
 
 	Vector GetStartPos() { return {1,1}; }
 	Vector GetEndPos() { return {MAX_X - 2, MAX_Y - 2 }; }

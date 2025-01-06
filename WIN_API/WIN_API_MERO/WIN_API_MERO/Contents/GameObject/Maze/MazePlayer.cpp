@@ -16,7 +16,7 @@ void MazePlayer::Update()
 {
     if (_pathIndex >= _path.size())
     {
-        _maze->CreateMaze();
+        _maze->CreateMaze_Kruskal();
         Init();
         FindPath_Astar();
         _maze->SetBlockType(_maze->GetEndPos().y, _maze->GetEndPos().x, Block::BlockType::END);
