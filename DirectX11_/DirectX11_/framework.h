@@ -24,8 +24,26 @@
 #include <d3dcompiler.h>
 #include <DirectXMath.h>
 
+#include "../DirectXTex/DirectXTex.h"
+
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"d3dcompiler.lib")
 
 using namespace std;
 using namespace DirectX;
+
+// 프로젝트 참조
+
+
+// 정적라이브러리
+// A에서 B에 있는 함수들을 쓰고 싶다.
+// => B를 정적라이브러리로 만든다.
+// ==> B를 실행시켜서 빌드 파일을 만들고
+// => A에게 전달해준다.
+// .lib
+
+// 동적라이브러리
+// A에 B에 있는 함수들을 쓰고 싶다.
+// => B를 동적라이브러리
+// ==> B는 A가 실행할 때 같이 실행
+// .dll

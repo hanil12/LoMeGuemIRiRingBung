@@ -1,13 +1,35 @@
 
+Texture2D map : register(t0);
+SamplerState samp : register(s0);
+
 // SV : 시스템 벨류
 // semantic : 의미
-float4 VS(float4 pos : POSITION) : SV_POSITION
+
+struct VertexInput
 {
-    return pos;
+    float4 pos : POSITION;
+    float2 uv : UV;
+};
+
+struct PixelInput
+{
+    float4 pos : SV_POSITION;
+    float2 uv : UV;
+};
+
+PixelInput VS(VertexInput input)
+{
+    // 계산
+    PixelInput output;
+    output.pos = input.pos;
+    output.uv = input.uv;
+    
+    return output;
 }
 
 // 각 픽셀마다 계산되는 공식
-float4 PS() : SV_TARGET
+float4 PS(PixelInput input) : SV_TARGET
 {
-    return float4(1.0f, 0.0f, 0.0f, 1.0f);
+    return map.Sample(samp, input.uv);
+
 }
