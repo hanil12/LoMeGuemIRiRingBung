@@ -11,6 +11,11 @@ VertexBuffer::~VertexBuffer()
 {
 }
 
+void VertexBuffer::SetVertexBuffer(int slot)
+{
+    DC->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &stride, &offset);
+}
+
 void VertexBuffer::CreateVertices()
 {
     Vertex_Texture temp;
@@ -37,6 +42,9 @@ void VertexBuffer::CreateVertices()
     temp.pos = XMFLOAT3(0.5f, -0.5f, 0.0f);
     temp.uv = XMFLOAT2(0, 5);
     vertices.push_back(temp); // 오른쪽 아래
+
+    stride = sizeof(Vertex_Texture);
+    offset = 0;
 }
 
 void VertexBuffer::CreateVertexBuffer()

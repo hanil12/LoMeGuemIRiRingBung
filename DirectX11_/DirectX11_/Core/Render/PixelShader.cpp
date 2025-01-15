@@ -11,6 +11,11 @@ PixelShader::~PixelShader()
 {
 }
 
+void PixelShader::SetShader()
+{
+	DC->PSSetShader(pixelShader.Get(), nullptr, 0);
+}
+
 void PixelShader::CreateBlob(wstring file)
 {
 	DWORD flags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_DEBUG;

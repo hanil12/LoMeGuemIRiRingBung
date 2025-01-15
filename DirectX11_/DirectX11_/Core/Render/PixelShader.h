@@ -5,6 +5,8 @@ public:
 	PixelShader(wstring file);
 	~PixelShader();
 
+	void SetShader();
+
 private:
 	void CreateBlob(wstring file);
 	void CreatePixelShader();

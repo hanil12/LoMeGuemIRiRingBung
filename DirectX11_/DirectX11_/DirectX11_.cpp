@@ -6,44 +6,8 @@
 
 #define MAX_LOADSTRING 100
 
-// Direct X : Direct Access
-// => 하드웨어(GPU)에 직접 접근을 도와주는 API를 제공
-
-// CPU vs GPU
-// - GPU는 연산장치의 개수가 CPU보다 월등하게 많다.
-// - GPU 연산장치는 단순한 계산 처리에 특화되어있다.
-// ==> CPU(교수님) vs GPU(초등학생 만명)
-
-// WIN_API => 픽셀찍어서 그리기
-// 화면 해상도 : 1920 x 1080개수의 픽셀 계산을 CPU가 하는 것 효율적인가?
-// => 초등학생 1만명한테 맡기겠다.
-
-// DX2D => 게임엔진을 만들기.
-// 영화 촬영
-// 총감독 / 프로그래머
-// 영화사 / 게임엔진
-// 세트장 / World
-// 카메라 / 카메라
-// 배우 / Actor
-// 조명 / Light
-
-// 렌더링파이프라인(3차원 가상에 있는 점들의 집합(메쉬)을 우리가 모니터(2차원)으로 어떻게 변환되는지에 대한 단계)
-
-// com객체
-// - 동적할당을 Create/Release.
-
-// 렌더링파이프라인 단계
- // 정점을 담아놓는 얘
-
-
-// 텍스쳐 맵핑 : 판박이
-Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> shaderResourceView; // SRV -> 판박이 만드는 아저씨
-Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState; // sampler -> 판박이 붙히는 아저씨
-
 HWND hWnd;
 
-
-void InitDevice();
 void Render();
 
 // 전역 변수:
@@ -80,7 +44,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_DIRECTX11));
 
-    InitDevice();
+    // 생성
+    Device::Create();
+
+    shared_ptr<Program> program = make_shared<Program>();
 
     MSG msg = {};
 
@@ -98,9 +65,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         {
             // 최적화
             // 메인루프
-            Render();
+            program->Update();
+            program->Render();
         }
     }
+
+    Device::Delete();
 
     return (int) msg.wParam;
 }
@@ -227,58 +197,7 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     return (INT_PTR)FALSE;
 }
 
-
-void InitDevice()
-{
-
-    // 판박이 아저씨들
-    // Texture 준비, Shader에 넘기는 작업
-    ScratchImage image;
-    wstring path = L"Resource/SCS.png";
-    LoadFromWICFile(path.c_str(), WIC_FLAGS_NONE, nullptr, image);
-
-    CreateShaderResourceView(device.Get(), image.GetImages(), image.GetImageCount(), image.GetMetadata(),
-    IN shaderResourceView.ReleaseAndGetAddressOf());
-
-    D3D11_SAMPLER_DESC sampDesc = {};
-    sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
-    sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
-    sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
-    sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-    sampDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
-    sampDesc.MinLOD = 0;
-    sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
-
-    device->CreateSamplerState(&sampDesc, samplerState.GetAddressOf());
-}
-
 void Render()
 {
-    // 바탕화면
-    FLOAT myColorR = 0.0f;
-    FLOAT myColorG = 0.0f;
-    FLOAT myColorB = 0.0f;
 
-    FLOAT clearColor[4] = {myColorR, myColorG,myColorB, 1.0f};
-
-    deviceContext->ClearRenderTargetView(renderTargetView.Get(), clearColor);
-
-    // IA : Input Assembler : 입력 병합
-    deviceContext->IASetInputLayout(inputLayout.Get());
-
-    UINT stride = sizeof(Vertex_Texture);
-    UINT offset = 0;
-    deviceContext->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &stride, &offset);
-    deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-    deviceContext->PSSetShaderResources(0,1,shaderResourceView.GetAddressOf());
-    deviceContext->PSSetSamplers(0, 1, samplerState.GetAddressOf());
-
-    deviceContext->VSSetShader(vertexShader.Get(), nullptr, 0);
-    deviceContext->PSSetShader(pixelShader.Get() ,nullptr, 0);
-
-    // 정점의 개수
-    deviceContext->Draw(6,0);
-
-    swapChain->Present(0,0);
 }

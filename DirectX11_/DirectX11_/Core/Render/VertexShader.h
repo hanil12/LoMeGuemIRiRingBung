@@ -5,6 +5,9 @@ public:
 	VertexShader(wstring file);
 	~VertexShader();
 
+	void SetInputLayout();
+	void SetShader();
+
 private:
 	void CreateBlob(wstring file);
 	void CreateInputLayout();

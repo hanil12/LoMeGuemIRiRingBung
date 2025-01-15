@@ -12,6 +12,16 @@ VertexShader::~VertexShader()
 {
 }
 
+void VertexShader::SetInputLayout()
+{
+    DC->IASetInputLayout(inputLayout.Get());
+}
+
+void VertexShader::SetShader()
+{
+    DC->VSSetShader(vertexShader.Get(), nullptr, 0);
+}
+
 void VertexShader::CreateBlob(wstring file)
 {
     DWORD flags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_DEBUG;

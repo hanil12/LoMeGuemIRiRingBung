@@ -18,6 +18,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <string>
+#include <memory>
 #include <wrl/client.h>
 
 #include <d3d11.h>
@@ -40,6 +41,12 @@ using namespace DirectX;
 #include "Core/Render/PixelShader.h"
 #include "Core/Texture/SamplerState.h"
 #include "Core/Texture/SRV.h"
+
+// Scene
+#include "Scene/Scene.h"
+
+// Program
+#include "Program/Program.h"
 
 extern HWND hWnd;
 

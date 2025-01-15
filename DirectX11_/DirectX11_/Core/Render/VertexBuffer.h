@@ -5,6 +5,8 @@ public:
 	VertexBuffer();
 	~VertexBuffer();
 
+	void SetVertexBuffer(int slot);
+
 private:
 	void CreateVertices();
 	void CreateVertexBuffer();
