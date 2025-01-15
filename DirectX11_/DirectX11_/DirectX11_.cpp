@@ -32,30 +32,9 @@
 // com객체
 // - 동적할당을 Create/Release.
 
-// 인력사무소장
-// 외주를 맡기고 실질적인 공사 대표 뽑기
-// 컴퓨터 하드웨어 기능 점검, 리소스 할당(하드웨어 접근에 필요한 리소스 할당)
-Microsoft::WRL::ComPtr<ID3D11Device> device;
-
-// 연출감독
-// 세트장을 실질적으로 꾸며주는 연출가
-// 렌더링 대상 결정(어따 그릴지, 얼마나 그릴지 결정)
-// -> 리소스를 그래픽 파이프라인에 바인딩, GPU가 수행할 명령을 지시
-Microsoft::WRL::ComPtr<ID3D11DeviceContext> deviceContext;
-
-// DX의 인터페이스로써 1개 이상의 표면을 포함하는 얘
-// 각각의 표면(버퍼, 텍스쳐)를 출력하기 전에 데이터를 보관한다.
-Microsoft::WRL::ComPtr<IDXGISwapChain> swapChain;
-
-// 후면버퍼를 가리키는 포인터
-// 후면버퍼(지금 당장 그릴 곳)
-Microsoft::WRL::ComPtr<ID3D11RenderTargetView> renderTargetView;
-
 // 렌더링파이프라인 단계
-Microsoft::WRL::ComPtr<ID3D11Buffer> vertexBuffer; // 정점을 담아놓는 얘
-Microsoft::WRL::ComPtr<ID3D11VertexShader> vertexShader; // 정점에 대한 계산식을 적어놓고, GPU가 수행할 명령을 적어놓는 얘
-Microsoft::WRL::ComPtr<ID3D11PixelShader> pixelShader; // 각 정점을 이었을 때 나와야하는 픽셀을 계산해주는 얘
-Microsoft::WRL::ComPtr<ID3D11InputLayout> inputLayout; // 보낸 정보들의 설명을 기입
+ // 정점을 담아놓는 얘
+
 
 // 텍스쳐 맵핑 : 판박이
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> shaderResourceView; // SRV -> 판박이 만드는 아저씨
@@ -63,14 +42,6 @@ Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState; // sampler -> 판박이
 
 HWND hWnd;
 
-struct Vertex
-{
-    Vertex() {}
-    Vertex(XMFLOAT3 pos) : pos(pos) {}
-
-    XMFLOAT3 pos;
-    XMFLOAT2 uv; // 텍스쳐좌표
-};
 
 void InitDevice();
 void Render();
@@ -259,136 +230,6 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
 void InitDevice()
 {
-    RECT rc;
-    GetClientRect(hWnd, &rc);
-    UINT width = rc.right - rc.left;
-    UINT height = rc.bottom - rc.top;
-
-    D3D_FEATURE_LEVEL featureLevels[] =
-    {
-        D3D_FEATURE_LEVEL_11_0,
-        D3D_FEATURE_LEVEL_10_1,
-        D3D_FEATURE_LEVEL_10_0,
-    };
-
-    UINT featureSize = ARRAYSIZE(featureLevels);
-
-    DXGI_SWAP_CHAIN_DESC sd = {};
-    sd.BufferCount = 1;
-    sd.BufferDesc.Width = width;
-    sd.BufferDesc.Height = height;
-    sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-    sd.BufferDesc.RefreshRate.Numerator = 60;
-    sd.BufferDesc.RefreshRate.Denominator = 1;
-    // Numerator / Denominator => 화면 프레임 갱신 속도
-    sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-    sd.OutputWindow= hWnd;
-    sd.SampleDesc.Count = 1;
-    sd.SampleDesc.Quality = 0;
-    sd.Windowed = true;
-
-    D3D11CreateDeviceAndSwapChain
-    (
-        nullptr,
-        D3D_DRIVER_TYPE_HARDWARE,
-        0,
-        D3D11_CREATE_DEVICE_DEBUG,
-        featureLevels,
-        featureSize,
-        D3D11_SDK_VERSION,
-        &sd,
-        swapChain.GetAddressOf(),
-        device.GetAddressOf(),
-        nullptr,
-        deviceContext.GetAddressOf()
-    );
-
-    Microsoft::WRL::ComPtr<ID3D11Texture2D> backBuffer;
-
-    swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)backBuffer.GetAddressOf());
-    device->CreateRenderTargetView(backBuffer.Get(), nullptr, renderTargetView.GetAddressOf());
-
-    deviceContext->OMSetRenderTargets(1, renderTargetView.GetAddressOf(), nullptr);
-
-    D3D11_VIEWPORT vp;
-    vp.Width = width;
-    vp.Height = height;
-    vp.MinDepth = 0.0f;
-    vp.MaxDepth = 1.0f;
-    vp.TopLeftX = 0;
-    vp.TopLeftY = 0;
-    deviceContext->RSSetViewports(1, &vp);
-
-    // 렌더링파이프라인
-
-    D3D11_INPUT_ELEMENT_DESC layOut[] = 
-    {
-        {
-            "POSITION",0,DXGI_FORMAT_R32G32B32_FLOAT,0,0,
-            D3D11_INPUT_PER_VERTEX_DATA,0
-        },
-        {
-            "UV",0,DXGI_FORMAT_R32G32_FLOAT,0,12, //"POSITION" semantic 이름 => 의미 부여 이름
-            D3D11_INPUT_PER_VERTEX_DATA,0
-        }
-    };
-
-    UINT layoutSize = ARRAYSIZE(layOut);
-
-    DWORD flags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_DEBUG;
-
-    // VertexShader, InputLayOut
-    Microsoft::WRL::ComPtr<ID3DBlob> vertexBlob; // Shader를 읽어주는 얘
-    D3DCompileFromFile(L"Shader/TutorialShader.hlsl", nullptr, nullptr,
-    "VS", "vs_5_0", flags, 0, vertexBlob.GetAddressOf(),nullptr);
-
-    device->CreateVertexShader(vertexBlob->GetBufferPointer(), vertexBlob->GetBufferSize(), nullptr, vertexShader.GetAddressOf());
-    device->CreateInputLayout(layOut,layoutSize, vertexBlob->GetBufferPointer(), vertexBlob->GetBufferSize(), inputLayout.GetAddressOf());
-
-    Microsoft::WRL::ComPtr<ID3DBlob> pixelBlob;
-    D3DCompileFromFile(L"Shader/TutorialShader.hlsl", nullptr, nullptr,
-    "PS", "ps_5_0", flags, 0, pixelBlob.GetAddressOf(), nullptr);
-
-    device->CreatePixelShader(pixelBlob->GetBufferPointer(), pixelBlob->GetBufferSize(), nullptr, pixelShader.GetAddressOf());
-
-    vector<Vertex> verices;
-    // 사각형
-    // 시계방향으로 정점을 배치해야 볼 수 있는 면이 나온다.
-    Vertex temp;
-    temp.pos = XMFLOAT3(-0.5f, 0.5f, 0.0f);
-    temp.uv = XMFLOAT2(0,0);
-    verices.push_back(temp); // 왼쪽 위
-
-    verices.push_back(XMFLOAT3(0.5f, -0.5f, 0.0f)); // 오른쪽 아래
-    temp.pos = XMFLOAT3(0.5f, -0.5f, 0.0f);
-    temp.uv = XMFLOAT2(1,1);
-
-    verices.push_back(XMFLOAT3(-0.5f, -0.5f, 0.0f)); // 왼쪽 아래
-    temp.pos = XMFLOAT3(0.5f, -0.5f, 0.0f);
-    temp.uv = XMFLOAT2(1, 1);
-
-    verices.push_back(XMFLOAT3(-0.5f, 0.5f, 0.0f)); // 왼쪽 위
-    temp.pos = XMFLOAT3(0.5f, -0.5f, 0.0f);
-    temp.uv = XMFLOAT2(1, 1);
-
-    verices.push_back(XMFLOAT3(0.5f, 0.5f, 0.0f)); // 오른쪽 위
-    temp.pos = XMFLOAT3(0.5f, -0.5f, 0.0f);
-    temp.uv = XMFLOAT2(1, 1);
-
-    verices.push_back(XMFLOAT3(0.5f, -0.5f, 0.0f)); // 오른쪽 아래
-    temp.pos = XMFLOAT3(0.5f, -0.5f, 0.0f);
-    temp.uv = XMFLOAT2(1, 1);
-
-
-    D3D11_BUFFER_DESC bd = {};
-    bd.Usage = D3D11_USAGE_DEFAULT;
-    bd.ByteWidth = sizeof(Vertex) * verices.size();
-    bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-
-    D3D11_SUBRESOURCE_DATA initData = {};
-    initData.pSysMem = verices.data();
-
-    device->CreateBuffer(&bd, &initData, vertexBuffer.GetAddressOf());
 
     // 판박이 아저씨들
     // Texture 준비, Shader에 넘기는 작업
@@ -425,7 +266,7 @@ void Render()
     // IA : Input Assembler : 입력 병합
     deviceContext->IASetInputLayout(inputLayout.Get());
 
-    UINT stride = sizeof(Vertex);
+    UINT stride = sizeof(Vertex_Texture);
     UINT offset = 0;
     deviceContext->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &stride, &offset);
     deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);

@@ -23,12 +23,40 @@
     <ClInclude Include="targetver.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Device.h" />
+    <ClInclude Include="Core\Render\VertexLayout.h" />
+    <ClInclude Include="Core\Render\VertexBuffer.h" />
+    <ClInclude Include="Core\Render\VertexShader.h" />
+    <ClInclude Include="Core\Render\PixelShader.h" />
+    <ClInclude Include="Core\Texture\SamplerState.h" />
+    <ClInclude Include="Core\Texture\SRV.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="framework.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Device.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Render\VertexLayout.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Render\VertexBuffer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Render\VertexShader.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Render\PixelShader.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Texture\SamplerState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Texture\SRV.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

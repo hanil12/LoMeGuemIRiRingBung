@@ -32,18 +32,18 @@
 using namespace std;
 using namespace DirectX;
 
-// 프로젝트 참조
+// Framework
+#include "Core/Device.h"
+#include "Core/Render/VertexLayout.h"
+#include "Core/Render/VertexBuffer.h"
+#include "Core/Render/VertexShader.h"
+#include "Core/Render/PixelShader.h"
+#include "Core/Texture/SamplerState.h"
+#include "Core/Texture/SRV.h"
 
+extern HWND hWnd;
 
-// 정적라이브러리
-// A에서 B에 있는 함수들을 쓰고 싶다.
-// => B를 정적라이브러리로 만든다.
-// ==> B를 실행시켜서 빌드 파일을 만들고
-// => A에게 전달해준다.
-// .lib
-
-// 동적라이브러리
-// A에 B에 있는 함수들을 쓰고 싶다.
-// => B를 동적라이브러리
-// ==> B는 A가 실행할 때 같이 실행
-// .dll
+// Macro
+#define DEVICE  Device::Instance()->GetDevice()
+#define DC		Device::Instance()->GetDC()
+#define RTV		Device::Instance()->GetRTV()
