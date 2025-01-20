@@ -147,7 +147,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Render\ConstantBuffer.h" />
     <ClInclude Include="Core\Device.h" />
+    <ClInclude Include="Core\Render\BufferLayOut.h" />
     <ClInclude Include="DirectX11_.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Core\Render\PixelShader.h" />
@@ -164,6 +166,7 @@
     <ClInclude Include="Scene\TutorialScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Render\ConstantBuffer.cpp" />
     <ClCompile Include="Core\Device.cpp" />
     <ClCompile Include="DirectX11_.cpp" />
     <ClCompile Include="framework.cpp">

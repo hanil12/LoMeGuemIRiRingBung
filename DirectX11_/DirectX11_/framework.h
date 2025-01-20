@@ -42,6 +42,10 @@ using namespace DirectX;
 #include "Core/Texture/SamplerState.h"
 #include "Core/Texture/SRV.h"
 
+// Matrix
+#include "Core/Render/ConstantBuffer.h"
+#include "Core/Render/BufferLayOut.h"
+
 // Bagic Obj
 #include "Contents/Quad.h"
 

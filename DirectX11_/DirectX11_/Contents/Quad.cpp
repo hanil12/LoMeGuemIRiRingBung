@@ -10,7 +10,7 @@ Quad::Quad(wstring path)
 	_vs = make_shared<VertexShader>(L"Shader/TutorialShader.hlsl");
 	_ps = make_shared<PixelShader>(L"Shader/TutorialShader.hlsl");
 	_samplerState = make_shared<SamplerState>();
-	_srv = make_shared<SRV>(L"Resource/SCS.png");
+	_srv = make_shared<SRV>(path);
 }
 
 Quad::~Quad()

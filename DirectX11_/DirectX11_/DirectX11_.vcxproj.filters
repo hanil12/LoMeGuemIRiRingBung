@@ -34,6 +34,8 @@
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\TutorialScene.h" />
     <ClInclude Include="Contents\Quad.h" />
+    <ClInclude Include="Core\Render\BufferLayOut.h" />
+    <ClInclude Include="Core\Render\ConstantBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
@@ -73,6 +75,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Quad.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Render\ConstantBuffer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
