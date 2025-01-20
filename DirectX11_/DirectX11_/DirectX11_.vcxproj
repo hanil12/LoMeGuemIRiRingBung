@@ -152,6 +152,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="Core\Render\PixelShader.h" />
     <ClInclude Include="Program\Program.h" />
+    <ClInclude Include="Contents\Quad.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Core\Texture\SamplerState.h" />
     <ClInclude Include="Core\Texture\SRV.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="Core\Texture\SamplerState.cpp" />
     <ClCompile Include="Core\Texture\SRV.cpp" />
     <ClCompile Include="Program\Program.cpp" />
+    <ClCompile Include="Contents\Quad.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\TutorialScene.cpp" />
   </ItemGroup>

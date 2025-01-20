@@ -2,19 +2,18 @@
 class VertexBuffer
 {
 public:
-	VertexBuffer();
+	VertexBuffer(void * data, UINT count, UINT stride, UINT offset = 0);
 	~VertexBuffer();
 
-	void SetVertexBuffer(int slot);
+	void SetVertexBuffer(UINT slot);
 
 private:
-	void CreateVertices();
 	void CreateVertexBuffer();
 
-	vector<Vertex_Texture> vertices;
-
-	UINT stride;
-	UINT offset;
+	UINT	_stride;
+	UINT	_offset;
+	UINT	_count;
+	void*	_data;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> vertexBuffer;
 };
 

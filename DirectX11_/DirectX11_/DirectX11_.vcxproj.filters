@@ -33,6 +33,7 @@
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\TutorialScene.h" />
+    <ClInclude Include="Contents\Quad.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
@@ -69,6 +70,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Scene\TutorialScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Quad.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
