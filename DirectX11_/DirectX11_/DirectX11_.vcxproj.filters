@@ -99,5 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\TutorialShader.hlsl" />
+    <FxCompile Include="Shader\TextureVertexShader.hlsl" />
+    <FxCompile Include="Shader\TexturePixelShader.hlsl" />
   </ItemGroup>
 </Project>

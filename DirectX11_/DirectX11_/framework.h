@@ -61,3 +61,6 @@ extern HWND hWnd;
 #define DEVICE  Device::Instance()->GetDevice()
 #define DC		Device::Instance()->GetDC()
 #define RTV		Device::Instance()->GetRTV()
+
+#define WIN_WIDTH	 1200
+#define WIN_HEIGHT	 720

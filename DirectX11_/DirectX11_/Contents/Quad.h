@@ -19,5 +19,10 @@ private:
 	shared_ptr<PixelShader> _ps;
 	shared_ptr<SamplerState> _samplerState;
 	shared_ptr<SRV> _srv;
+
+	XMFLOAT2		 _scale; // S
+	float			 _angle; // R
+	XMFLOAT2		 _pos;   // Translate
+	shared_ptr<MatrixBuffer> _world;
 };
 

@@ -9,6 +9,9 @@ public:
 	void Render();
 
 private:
+	shared_ptr<MatrixBuffer> _view;
+	shared_ptr<MatrixBuffer> _projection;
+
 	shared_ptr<Scene> _scene;
 };
 

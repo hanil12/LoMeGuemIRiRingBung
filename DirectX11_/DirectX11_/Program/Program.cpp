@@ -6,6 +6,12 @@
 Program::Program()
 {
 	_scene = make_shared<TutorialScene>();
+
+    _view = make_shared<MatrixBuffer>();
+    _projection = make_shared<MatrixBuffer>();
+
+    XMMATRIX projectionM = XMMatrixOrthographicOffCenterLH(0,WIN_WIDTH,0,WIN_HEIGHT,0.0f,1.0f);
+    _projection->SetData(projectionM);
 }
 
 Program::~Program()
@@ -14,6 +20,9 @@ Program::~Program()
 
 void Program::Update()
 {
+    _view->Update();
+    _projection->Update();
+
 	_scene->Update();
 }
 
@@ -28,6 +37,9 @@ void Program::Render()
 
     DC->ClearRenderTargetView(RTV.Get(), clearColor);
     
+    _view->SetVSBuffer(1);
+    _projection->SetVSBuffer(2);
+
     DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
     _scene->Render();
 
