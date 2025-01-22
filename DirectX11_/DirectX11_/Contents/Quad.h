@@ -20,9 +20,7 @@ private:
 	shared_ptr<SamplerState> _samplerState;
 	shared_ptr<SRV> _srv;
 
-	XMFLOAT2		 _scale; // S
-	float			 _angle; // R
-	XMFLOAT2		 _pos;   // Translate
-	shared_ptr<MatrixBuffer> _world;
+	// Transform
+	shared_ptr<Transform> _transform; // <= 월드에 존재하기 위한 필요조건
 };
 

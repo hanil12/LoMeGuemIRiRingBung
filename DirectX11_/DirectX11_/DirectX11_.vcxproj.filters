@@ -37,6 +37,8 @@
     <ClInclude Include="Core\Render\BufferLayOut.h" />
     <ClInclude Include="Core\Render\ConstantBuffer.h" />
     <ClInclude Include="Math\Vector.h" />
+    <ClInclude Include="Math\Transform.h" />
+    <ClInclude Include="Scene\SolarSystemScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
@@ -81,6 +83,12 @@
     <ClCompile Include="Core\Render\ConstantBuffer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Transform.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SolarSystemScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX11_.rc">
@@ -95,6 +103,15 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="Resource\SCS.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\earth.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\moon.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\sun.png">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

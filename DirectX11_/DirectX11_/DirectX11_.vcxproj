@@ -160,11 +160,13 @@
     <ClInclude Include="Core\Texture\SamplerState.h" />
     <ClInclude Include="Core\Texture\SRV.h" />
     <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Scene\SolarSystemScene.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Core\Render\VertexBuffer.h" />
     <ClInclude Include="Core\Render\VertexLayout.h" />
     <ClInclude Include="Core\Render\VertexShader.h" />
     <ClInclude Include="Scene\TutorialScene.h" />
+    <ClInclude Include="Math\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Render\ConstantBuffer.cpp" />
@@ -190,13 +192,18 @@
     <ClCompile Include="Contents\Quad.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\TutorialScene.cpp" />
+    <ClCompile Include="Math\Transform.cpp" />
+    <ClCompile Include="Scene\SolarSystemScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX11_.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="DirectX11_.ico" />
+    <Image Include="Resource\earth.png" />
+    <Image Include="Resource\moon.png" />
     <Image Include="Resource\SCS.png" />
+    <Image Include="Resource\sun.png" />
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>

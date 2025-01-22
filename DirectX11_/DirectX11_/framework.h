@@ -33,6 +33,10 @@
 using namespace std;
 using namespace DirectX;
 
+// Math
+#include "Math/Vector.h"
+#include "Math/Transform.h"
+
 // Framework
 #include "Core/Device.h"
 #include "Core/Render/VertexLayout.h"
@@ -64,3 +68,4 @@ extern HWND hWnd;
 
 #define WIN_WIDTH	 1200
 #define WIN_HEIGHT	 720
+#define CENTER		 Vector(WIN_WIDTH * 0.5f, WIN_HEIGHT * 0.5f)
