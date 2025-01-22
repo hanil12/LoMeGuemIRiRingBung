@@ -13,8 +13,6 @@ Quad::Quad(wstring path)
 	_srv = make_shared<SRV>(path);
 
     _transform = make_shared<Transform>();
-    _transform->SetLocation(CENTER);
-    _transform->SetScale({0.5f, 0.5f});
 }
 
 Quad::~Quad()
@@ -24,8 +22,6 @@ Quad::~Quad()
 void Quad::Update()
 {
     _transform->Update();
-
-    _transform->AddAngle(0.0001f);
 }
 
 void Quad::Render()

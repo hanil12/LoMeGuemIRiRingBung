@@ -20,7 +20,14 @@ public:
 	float GetAngle() { return _angle; }
 	void AddAngle(float value) { _angle += value; }
 
+	void SetParent(shared_ptr<Transform> parent) { _parent = parent; }
+	XMMATRIX GetMatrix() { return _srtMatrix; }
+
 private:
+	weak_ptr<Transform> _parent;
+
+	XMMATRIX	 _srtMatrix;
+
 	Vector		 _scale; // S
 	float		 _angle; // R
 	Vector		 _pos;   // Translate

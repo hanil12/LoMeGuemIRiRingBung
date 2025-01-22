@@ -6,6 +6,8 @@ Transform::Transform()
     _pos = { 0.0f,0.0f };
     _scale = { 1.0f, 1.0f };
     _angle = 0.0f;
+    _srtMatrix = XMMatrixIdentity();
+
     _world = make_shared<MatrixBuffer>();
 }
 
@@ -19,9 +21,14 @@ void Transform::Update()
     XMMATRIX R = XMMatrixRotationZ(_angle);
     XMMATRIX T = XMMatrixTranslation(_pos.x, _pos.y, 0);
 
-    XMMATRIX srtMaxtrix = S * R * T;
+    _srtMatrix = S * R * T;
 
-    _world->SetData(srtMaxtrix);
+    if (_parent.expired() == false)
+    {
+        _srtMatrix *= _parent.lock()->GetMatrix();
+    }
+
+    _world->SetData(_srtMatrix);
     _world->Update();
 }
 
