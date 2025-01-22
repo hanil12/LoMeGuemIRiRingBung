@@ -153,6 +153,7 @@
     <ClInclude Include="DirectX11_.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Core\Render\PixelShader.h" />
+    <ClInclude Include="Math\Vector.h" />
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Contents\Quad.h" />
     <ClInclude Include="Resource.h" />

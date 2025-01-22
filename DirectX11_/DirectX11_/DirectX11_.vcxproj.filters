@@ -36,6 +36,7 @@
     <ClInclude Include="Contents\Quad.h" />
     <ClInclude Include="Core\Render\BufferLayOut.h" />
     <ClInclude Include="Core\Render\ConstantBuffer.h" />
+    <ClInclude Include="Math\Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
