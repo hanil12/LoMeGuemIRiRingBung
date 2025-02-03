@@ -42,6 +42,7 @@ void Program::Render()
     _projection->SetVSBuffer(2);
 
     DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    ALPHA->SetState();
     _scene->Render();
 
     Device::Instance()->GetSwapChain()->Present(0, 0);

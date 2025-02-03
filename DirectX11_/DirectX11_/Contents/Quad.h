@@ -19,7 +19,6 @@ private:
 
 	shared_ptr<VertexShader> _vs;
 	shared_ptr<PixelShader> _ps;
-	shared_ptr<SamplerState> _samplerState;
 	shared_ptr<SRV> _srv;
 
 	// Transform

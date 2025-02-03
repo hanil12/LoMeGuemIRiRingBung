@@ -9,7 +9,6 @@ Quad::Quad(wstring path)
 
 	_vs = make_shared<VertexShader>(L"Shader/TextureVertexShader.hlsl");
 	_ps = make_shared<PixelShader>(L"Shader/TexturePixelShader.hlsl");
-	_samplerState = make_shared<SamplerState>();
 	_srv = make_shared<SRV>(path);
 
     _transform = make_shared<Transform>();
@@ -30,7 +29,7 @@ void Quad::Render()
     _vertexBuffer->SetVertexBuffer(0);
 
     _srv->PSSet(0);
-    _samplerState->PSSet(0);
+    SAMPLER->PSSet(0);
 
     _transform->SetVSSlot(0);
 

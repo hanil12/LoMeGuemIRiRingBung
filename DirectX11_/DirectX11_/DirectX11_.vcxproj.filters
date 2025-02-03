@@ -39,6 +39,9 @@
     <ClInclude Include="Math\Vector.h" />
     <ClInclude Include="Math\Transform.h" />
     <ClInclude Include="Scene\SolarSystemScene.h" />
+    <ClInclude Include="Core\Texture\BlendState.h" />
+    <ClInclude Include="Core\Texture\StateManager.h" />
+    <ClInclude Include="GMacro.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
@@ -87,6 +90,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Scene\SolarSystemScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Texture\BlendState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Texture\StateManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

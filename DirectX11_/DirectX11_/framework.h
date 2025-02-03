@@ -44,6 +44,8 @@ using namespace DirectX;
 #include "Core/Render/VertexShader.h"
 #include "Core/Render/PixelShader.h"
 #include "Core/Texture/SamplerState.h"
+#include "Core/Texture/BlendState.h"
+#include "Core/Texture/StateManager.h"
 #include "Core/Texture/SRV.h"
 
 // Matrix
@@ -59,13 +61,7 @@ using namespace DirectX;
 // Program
 #include "Program/Program.h"
 
-extern HWND hWnd;
-
 // Macro
-#define DEVICE  Device::Instance()->GetDevice()
-#define DC		Device::Instance()->GetDC()
-#define RTV		Device::Instance()->GetRTV()
+#include "GMacro.h"
 
-#define WIN_WIDTH	 1200
-#define WIN_HEIGHT	 720
-#define CENTER		 Vector(WIN_WIDTH * 0.5f, WIN_HEIGHT * 0.5f)
+extern HWND hWnd;
