@@ -155,6 +155,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="Core\Render\PixelShader.h" />
     <ClInclude Include="GMacro.h" />
+    <ClInclude Include="Core\Render\IndexBuffer.h" />
     <ClInclude Include="Math\Vector.h" />
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Contents\Quad.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="Core\Render\VertexShader.cpp" />
     <ClCompile Include="Core\Texture\SamplerState.cpp" />
     <ClCompile Include="Core\Texture\SRV.cpp" />
+    <ClCompile Include="Core\Render\IndexBuffer.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Contents\Quad.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />

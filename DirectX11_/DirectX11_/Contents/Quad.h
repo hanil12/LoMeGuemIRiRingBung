@@ -13,9 +13,11 @@ public:
 
 private:
 	void CreateVertices();
-	vector<Vertex_Texture> vertices;
+	vector<Vertex_Texture>	 _vertices;
+	vector<UINT>			 _indices;
 
 	shared_ptr<VertexBuffer> _vertexBuffer;
+	shared_ptr<IndexBuffer> _indexBuffer;
 
 	shared_ptr<VertexShader> _vs;
 	shared_ptr<PixelShader> _ps;
