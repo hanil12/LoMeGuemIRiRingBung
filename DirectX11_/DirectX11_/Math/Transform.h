@@ -8,9 +8,11 @@ public:
 	void Update();
 	void SetVSSlot(int slot);
 
-	void SetLocation(Vector pos) { _pos = pos; }
-	Vector GetLocation() { return _pos; }
-	void AddLocation(Vector value) { _pos += value; }
+	void SetLocalLocation(Vector pos) { _pos = pos; }
+	Vector GetLocalLocation() { return _pos; }
+	void AddLocalLocation(Vector value) { _pos += value; }
+
+	Vector GetWorldLocation();
 
 	void SetScale(Vector scale) { _scale = scale; }
 	Vector GetScale() { return _scale; }

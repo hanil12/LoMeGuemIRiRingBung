@@ -43,6 +43,7 @@
     <ClInclude Include="Core\Texture\StateManager.h" />
     <ClInclude Include="GMacro.h" />
     <ClInclude Include="Core\Render\IndexBuffer.h" />
+    <ClInclude Include="Scene\BowScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
@@ -100,6 +101,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Core\Render\IndexBuffer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\BowScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

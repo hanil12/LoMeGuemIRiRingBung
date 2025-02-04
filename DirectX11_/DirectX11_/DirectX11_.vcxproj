@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\BowScene.h" />
     <ClInclude Include="Core\Texture\BlendState.h" />
     <ClInclude Include="Core\Render\ConstantBuffer.h" />
     <ClInclude Include="Core\Device.h" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Math\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\BowScene.cpp" />
     <ClCompile Include="Core\Texture\BlendState.cpp" />
     <ClCompile Include="Core\Render\ConstantBuffer.cpp" />
     <ClCompile Include="Core\Device.cpp" />

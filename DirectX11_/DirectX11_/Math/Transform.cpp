@@ -36,3 +36,11 @@ void Transform::SetVSSlot(int slot)
 {
     _world->SetVSBuffer(slot);
 }
+
+Vector Transform::GetWorldLocation()
+{
+    float x = _srtMatrix.r[3].m128_f32[0];
+    float y = _srtMatrix.r[3].m128_f32[1];
+
+    return Vector(x,y);
+}

@@ -66,3 +66,4 @@ using namespace DirectX;
 #include "GMacro.h"
 
 extern HWND hWnd;
+extern Vector mousePos;
