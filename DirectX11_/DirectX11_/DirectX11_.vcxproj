@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Contents\ArrowScene\Arrow.h" />
     <ClInclude Include="Scene\BowScene.h" />
     <ClInclude Include="Core\Texture\BlendState.h" />
     <ClInclude Include="Core\Render\ConstantBuffer.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Math\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Contents\ArrowScene\Arrow.cpp" />
     <ClCompile Include="Scene\BowScene.cpp" />
     <ClCompile Include="Core\Texture\BlendState.cpp" />
     <ClCompile Include="Core\Render\ConstantBuffer.cpp" />

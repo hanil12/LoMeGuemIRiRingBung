@@ -45,19 +45,19 @@ void Quad::CreateVertices()
 {
     Vertex_Texture temp;
     temp.pos = XMFLOAT3(-300.0f, 300.0f, 0.0f);
-    temp.uv = XMFLOAT2(1, 0);
+    temp.uv = XMFLOAT2(0, 0);
     _vertices.push_back(temp); // 왼쪽 위
 
     temp.pos = XMFLOAT3(300.0f, -300.0f, 0.0f);
-    temp.uv = XMFLOAT2(0, 1);
+    temp.uv = XMFLOAT2(1, 1);
     _vertices.push_back(temp); // 오른쪽 아래
 
     temp.pos = XMFLOAT3(-300.0f, -300.0f, 0.0f);
-    temp.uv = XMFLOAT2(1, 1);
+    temp.uv = XMFLOAT2(0, 1);
     _vertices.push_back(temp); // 왼쪽 아래
 
     temp.pos = XMFLOAT3(300.0f, 300.0f, 0.0f);
-    temp.uv = XMFLOAT2(0, 0);
+    temp.uv = XMFLOAT2(1, 0);
     _vertices.push_back(temp); // 오른쪽 위
 
     // 031 012

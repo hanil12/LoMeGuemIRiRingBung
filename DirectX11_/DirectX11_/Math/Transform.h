@@ -8,17 +8,17 @@ public:
 	void Update();
 	void SetVSSlot(int slot);
 
-	void SetLocalLocation(Vector pos) { _pos = pos; }
+	void SetLocalLocation(Vector pos) { _pos = pos; Update(); }
 	Vector GetLocalLocation() { return _pos; }
 	void AddLocalLocation(Vector value) { _pos += value; }
 
 	Vector GetWorldLocation();
 
-	void SetScale(Vector scale) { _scale = scale; }
+	void SetScale(Vector scale) { _scale = scale; Update(); }
 	Vector GetScale() { return _scale; }
 	void AddScale(Vector value) { _scale += value; }
 
-	void SetAngle(float angle) { _angle = angle; }
+	void SetAngle(float angle) { _angle = angle; Update(); }
 	float GetAngle() { return _angle; }
 	void AddAngle(float value) { _angle += value; }
 

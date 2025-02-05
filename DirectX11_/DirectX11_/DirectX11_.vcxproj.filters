@@ -44,6 +44,7 @@
     <ClInclude Include="GMacro.h" />
     <ClInclude Include="Core\Render\IndexBuffer.h" />
     <ClInclude Include="Scene\BowScene.h" />
+    <ClInclude Include="Contents\ArrowScene\Arrow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
@@ -104,6 +105,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Scene\BowScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\ArrowScene\Arrow.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
