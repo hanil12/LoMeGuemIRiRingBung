@@ -13,6 +13,8 @@ BowScene::BowScene()
 	{
 		_arrows.push_back(make_shared<Arrow>());
 	}
+
+	_rect = make_shared<RectCollider>(CENTER, Vector(50,50));
 }
 
 BowScene::~BowScene()
@@ -21,6 +23,8 @@ BowScene::~BowScene()
 
 void BowScene::Update()
 {
+	_rect->Update();
+
 	_bow->Update();
 
 	Vector dir = mousePos - _bow->GetTransform()->GetLocalLocation();
@@ -42,6 +46,8 @@ void BowScene::Render()
 	{
 		arrow->Render();
 	}
+
+	_rect->Render();
 }
 
 void BowScene::Fire()

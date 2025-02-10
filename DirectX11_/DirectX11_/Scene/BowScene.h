@@ -19,5 +19,7 @@ private:
 	shared_ptr<Quad> _bow;
 
 	vector<shared_ptr<Arrow>> _arrows;
+
+	shared_ptr<RectCollider> _rect;
 };
 

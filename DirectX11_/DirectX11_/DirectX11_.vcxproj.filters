@@ -45,6 +45,7 @@
     <ClInclude Include="Core\Render\IndexBuffer.h" />
     <ClInclude Include="Scene\BowScene.h" />
     <ClInclude Include="Contents\ArrowScene\Arrow.h" />
+    <ClInclude Include="Math\Collider\RectCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
@@ -110,6 +111,9 @@
     <ClCompile Include="Contents\ArrowScene\Arrow.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Collider\RectCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX11_.rc">
@@ -140,5 +144,7 @@
     <FxCompile Include="Shader\TutorialShader.hlsl" />
     <FxCompile Include="Shader\TextureVertexShader.hlsl" />
     <FxCompile Include="Shader\TexturePixelShader.hlsl" />
+    <FxCompile Include="Shader\ColliderVertexShader.hlsl" />
+    <FxCompile Include="Shader\ColliderPixelShader.hlsl" />
   </ItemGroup>
 </Project>

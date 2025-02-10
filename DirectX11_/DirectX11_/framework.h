@@ -53,6 +53,9 @@ using namespace DirectX;
 #include "Core/Render/ConstantBuffer.h"
 #include "Core/Render/BufferLayOut.h"
 
+// Collider
+#include "Math/Collider/RectCollider.h"
+
 // Bagic Obj
 #include "Contents/Quad.h"
 

@@ -22,7 +22,7 @@ public:
 	float GetAngle() { return _angle; }
 	void AddAngle(float value) { _angle += value; }
 
-	void SetParent(shared_ptr<Transform> parent) { _parent = parent; }
+	void SetParent(shared_ptr<Transform> parent) { _parent = parent; Update(); }
 	XMMATRIX GetMatrix() { return _srtMatrix; }
 
 private:

@@ -22,3 +22,26 @@ public:
 private:
 	Data _data;
 };
+
+class ColorBuffer : public ConstantBuffer
+{
+public:
+	struct Data
+	{
+		XMFLOAT4 color;
+	};
+
+	ColorBuffer()
+	: ConstantBuffer(&_data, sizeof(Data))
+	{
+	}
+	~ColorBuffer() {}
+
+	void SetData(XMFLOAT4 value)
+	{
+		_data.color = value;
+	}
+
+private:
+	Data _data;
+};
