@@ -48,6 +48,7 @@
     <ClInclude Include="Math\Collider\RectCollider.h" />
     <ClInclude Include="Math\Collider\CircleCollider.h" />
     <ClInclude Include="Scene\CollisionScene.h" />
+    <ClInclude Include="Utility\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
@@ -120,6 +121,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Scene\CollisionScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\InputManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

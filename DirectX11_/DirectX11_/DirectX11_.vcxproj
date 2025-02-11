@@ -176,6 +176,7 @@
     <ClInclude Include="Core\Render\VertexShader.h" />
     <ClInclude Include="Scene\TutorialScene.h" />
     <ClInclude Include="Math\Transform.h" />
+    <ClInclude Include="Utility\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene\CollisionScene.cpp" />
@@ -211,6 +212,7 @@
     <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Scene\SolarSystemScene.cpp" />
     <ClCompile Include="Core\Texture\StateManager.cpp" />
+    <ClCompile Include="Utility\InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX11_.rc" />

@@ -47,6 +47,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 생성
     Device::Create();
     StateManager::Create();
+    InputManager::Create();
 
     shared_ptr<Program> program = make_shared<Program>();
 
@@ -71,6 +72,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
     }
 
+    InputManager::Delete();
     StateManager::Delete();
     Device::Delete();
 

@@ -23,6 +23,8 @@ Program::~Program()
 
 void Program::Update()
 {
+    InputManager::GetInstance()->Update();
+
     _view->Update();
     _projection->Update();
 

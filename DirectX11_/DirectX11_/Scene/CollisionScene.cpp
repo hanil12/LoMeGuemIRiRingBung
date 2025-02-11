@@ -5,6 +5,10 @@ CollisionScene::CollisionScene()
 {
 	_circleCollider = make_shared<CircleCollider>(CENTER, 100);
 	_rectCollider = make_shared<RectCollider>(CENTER - Vector(0,100), Vector(100,100));
+
+
+	// circle1,2 만들고, 한 circle2을 종속 시킨 상태에서 circle1 이동 및 회전
+	// extra... circle3
 }
 
 CollisionScene::~CollisionScene()
@@ -37,13 +41,13 @@ void CollisionScene::Render()
 
 void CollisionScene::Input()
 {
-	if (GetKeyState('W') & 0x8000)
+	if (KEY_PRESS('W'))
 	{
 		_circleCollider->GetTransform()->AddScale(Vector(0.001f, 0.001f));
 		//_rectCollider->GetTransform()->AddScale(Vector(0.001f, 0.001f));
 	}
 
-	if (GetKeyState('S') & 0x8000)
+	if (KEY_PRESS('S'))
 	{
 		_circleCollider->GetTransform()->AddScale(Vector(-0.001f, -0.001f));
 		//_rectCollider->GetTransform()->AddScale(Vector(-0.001f, -0.001f));

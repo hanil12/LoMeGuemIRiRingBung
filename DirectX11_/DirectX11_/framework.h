@@ -53,6 +53,9 @@ using namespace DirectX;
 #include "Core/Render/ConstantBuffer.h"
 #include "Core/Render/BufferLayOut.h"
 
+// Utility
+#include "Utility/InputManager.h"
+
 // Collider
 #include "Math/Collider/RectCollider.h"
 #include "Math/Collider/CircleCollider.h"
