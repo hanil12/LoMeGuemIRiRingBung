@@ -46,6 +46,8 @@
     <ClInclude Include="Scene\BowScene.h" />
     <ClInclude Include="Contents\ArrowScene\Arrow.h" />
     <ClInclude Include="Math\Collider\RectCollider.h" />
+    <ClInclude Include="Math\Collider\CircleCollider.h" />
+    <ClInclude Include="Scene\CollisionScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
@@ -112,6 +114,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Math\Collider\RectCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Collider\CircleCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\CollisionScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

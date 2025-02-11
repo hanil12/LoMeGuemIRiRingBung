@@ -2,7 +2,7 @@
 #include "RectCollider.h"
 
 RectCollider::RectCollider(Vector center, Vector size)
-: _center(center), _halfSize(size * 0.5f)
+: _halfSize(size * 0.5f)
 {
 	CreateVertices();
 
@@ -13,7 +13,7 @@ RectCollider::RectCollider(Vector center, Vector size)
     _ps = make_shared<PixelShader>(L"Shader/ColliderPixelShader.hlsl");
 
     _transform = make_shared<Transform>();
-    _transform->SetLocalLocation(_center);
+    _transform->SetLocalLocation(center);
 
     _colorBuffer = make_shared<ColorBuffer>();
     _colorBuffer->SetData(XMFLOAT4(0,1,0,1));
@@ -27,8 +27,6 @@ void RectCollider::Update()
 {
     _transform->Update();
     _colorBuffer->Update();
-
-    _colorBuffer->SetData(XMFLOAT4(1,0,0,1));
 }
 
 void RectCollider::Render()
@@ -45,6 +43,19 @@ void RectCollider::Render()
     _ps->SetShader();
 
     DC->Draw(_vertices.size(),0);
+}
+
+bool RectCollider::IsCollision(const Vector& pos)
+{
+    if (pos.x < Right() && pos.x > Left())
+    {
+        if (pos.y < Top() && pos.y > Bottom())
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void RectCollider::CreateVertices()

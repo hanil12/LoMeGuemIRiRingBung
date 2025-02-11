@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\CollisionScene.h" />
+    <ClInclude Include="Math\Collider\CircleCollider.h" />
     <ClInclude Include="Contents\ArrowScene\Arrow.h" />
     <ClInclude Include="Math\Collider\RectCollider.h" />
     <ClInclude Include="Scene\BowScene.h" />
@@ -176,6 +178,8 @@
     <ClInclude Include="Math\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\CollisionScene.cpp" />
+    <ClCompile Include="Math\Collider\CircleCollider.cpp" />
     <ClCompile Include="Contents\ArrowScene\Arrow.cpp" />
     <ClCompile Include="Math\Collider\RectCollider.cpp" />
     <ClCompile Include="Scene\BowScene.cpp" />

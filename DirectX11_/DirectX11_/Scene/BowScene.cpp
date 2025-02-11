@@ -37,6 +37,22 @@ void BowScene::Update()
 	}
 
 	Fire();
+
+	if (GetKeyState('W') & 0x8000)
+	{
+		_rect->GetTransform()->AddScale(Vector(0.001f,0.001f));
+	}
+
+	if (GetKeyState('S') & 0x8000)
+	{
+		_rect->GetTransform()->AddScale(Vector(-0.001f, -0.001f));
+	}
+
+	// Collider
+	if(_rect->IsCollision(mousePos))
+		_rect->SetRed();
+	else
+		_rect->SetGreen();
 }
 
 void BowScene::Render()

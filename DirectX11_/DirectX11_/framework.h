@@ -55,6 +55,7 @@ using namespace DirectX;
 
 // Collider
 #include "Math/Collider/RectCollider.h"
+#include "Math/Collider/CircleCollider.h"
 
 // Bagic Obj
 #include "Contents/Quad.h"

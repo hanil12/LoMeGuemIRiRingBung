@@ -13,6 +13,13 @@ public:
 	void SetRed() { _colorBuffer->SetData(XMFLOAT4(1,0,0,1)); }
 	void SetGreen() { _colorBuffer->SetData(XMFLOAT4(0,1,0,1)); }
 
+	float Left() {  return Center().x - (_halfSize.x * _transform->GetScale().x); }
+	float Right() { return Center().x + (_halfSize.x * _transform->GetScale().x); }
+	float Top() { return Center().y + _halfSize.y * _transform->GetScale().y; }
+	float Bottom() { return Center().y - _halfSize.y * _transform->GetScale().y; }
+
+	Vector Center() { return _transform->GetWorldLocation(); }
+
 	// 1. 점충돌 구현
 	// 2. CircleCollider
 	bool IsCollision(const Vector& pos);
@@ -29,7 +36,6 @@ private:
 	shared_ptr<Transform> _transform;
 	shared_ptr<ColorBuffer> _colorBuffer;
 
-	Vector _center;
 	Vector _halfSize;
 };
 

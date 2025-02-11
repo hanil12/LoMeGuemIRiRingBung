@@ -1,5 +1,7 @@
 #pragma once
 
+#define PI 3.141592f
+
 // Macro
 #define DEVICE  Device::Instance()->GetDevice()
 #define DC		Device::Instance()->GetDC()
