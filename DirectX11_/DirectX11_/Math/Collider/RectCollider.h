@@ -1,6 +1,13 @@
 #pragma once
 class RectCollider
 {
+	struct OBB_DESC
+	{
+		Vector position;
+		Vector direction[2];
+		float length[2];
+	};
+
 public:
 	RectCollider(Vector center, Vector size);
 	~RectCollider();
@@ -13,11 +20,7 @@ public:
 	void SetRed() { _colorBuffer->SetData(XMFLOAT4(1,0,0,1)); }
 	void SetGreen() { _colorBuffer->SetData(XMFLOAT4(0,1,0,1)); }
 
-	float Left() {  return Center().x - (_halfSize.x * _transform->GetScale().x); }
-	float Right() { return Center().x + (_halfSize.x * _transform->GetScale().x); }
-	float Top() { return Center().y + _halfSize.y * _transform->GetScale().y; }
-	float Bottom() { return Center().y - _halfSize.y * _transform->GetScale().y; }
-
+	OBB_DESC GetOBB();
 	Vector Center() { return _transform->GetWorldLocation(); }
 
 	// 1. 점충돌 구현

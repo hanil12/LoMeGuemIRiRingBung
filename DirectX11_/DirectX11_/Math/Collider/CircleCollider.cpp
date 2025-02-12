@@ -52,6 +52,13 @@ bool CircleCollider::IsCollision(const Vector& pos)
     return length < Radius();
 }
 
+bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other)
+{
+    float length = (other->Center() - Center()).Length();
+
+    return length < other->Radius() + Radius();
+}
+
 void CircleCollider::CreateVertices()
 {
     float theta = 2 * PI / 30.0f;

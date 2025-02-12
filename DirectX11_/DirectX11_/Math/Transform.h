@@ -13,6 +13,7 @@ public:
 	void AddLocalLocation(Vector value) { _pos += value; }
 
 	Vector GetWorldLocation();
+	Vector GetWorldScale();
 
 	void SetScale(Vector scale) { _scale = scale; Update(); }
 	Vector GetScale() { return _scale; }

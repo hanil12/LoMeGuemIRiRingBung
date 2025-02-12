@@ -44,3 +44,13 @@ Vector Transform::GetWorldLocation()
 
     return Vector(x,y);
 }
+
+Vector Transform::GetWorldScale()
+{
+    if(_parent.expired() == true)
+        return _scale;
+
+    Vector parentScale =  _parent.lock()->GetWorldScale();
+
+    return Vector(_scale.x * parentScale.x, _scale.y * parentScale.y);
+}

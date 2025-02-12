@@ -45,17 +45,45 @@ void RectCollider::Render()
     DC->Draw(_vertices.size(),0);
 }
 
+RectCollider::OBB_DESC RectCollider::GetOBB()
+{
+    OBB_DESC result;
+    result.position = _transform->GetWorldLocation();
+    result.length[0] = _halfSize.x * _transform->GetWorldScale().x;
+    result.length[1] = _halfSize.y * _transform->GetWorldScale().y;
+
+    auto matrix = _transform->GetMatrix();
+    result.direction[0] = {matrix.r[0].m128_f32[0], matrix.r[0].m128_f32[1] };
+    result.direction[1] = {matrix.r[1].m128_f32[0], matrix.r[1].m128_f32[1] };
+    result.direction[0].Normalize();
+    result.direction[1].Normalize();
+
+    return result;
+}
+
 bool RectCollider::IsCollision(const Vector& pos)
 {
-    if (pos.x < Right() && pos.x > Left())
-    {
-        if (pos.y < Top() && pos.y > Bottom())
-        {
-            return true;
-        }
-    }
+    // 각 축으로 내적 후 비교
 
-    return false;
+    OBB_DESC desc = GetOBB();
+
+    Vector aTob = pos - desc.position;
+
+    Vector uea1 = desc.direction[0];
+    Vector ea1 = desc.direction[0] * desc.length[0];
+
+    float distance_ea1 = abs(uea1.Dot(aTob));
+    if(distance_ea1 > ea1.Length())
+        return false;
+
+    Vector uea2 = desc.direction[1];
+    Vector ea2 = desc.direction[1] * desc.length[1];
+
+    float distance_ea2 = abs(uea2.Dot(aTob));
+    if (distance_ea2 > ea2.Length())
+        return false;
+
+    return true;
 }
 
 void RectCollider::CreateVertices()

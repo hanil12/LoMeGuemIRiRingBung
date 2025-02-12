@@ -14,11 +14,12 @@ public:
 	void SetGreen() { _colorBuffer->SetData(XMFLOAT4(0, 1, 0, 1)); }
 
 	Vector Center() { return _transform->GetWorldLocation(); }
-	float Radius() { return _radius * _transform->GetScale().x; }
+	float Radius() { return _radius * _transform->GetWorldScale().x; }
 
 	// 1. 점충돌 구현
 	// 2. CircleCollider
 	bool IsCollision(const Vector& pos);
+	bool IsCollision(shared_ptr<CircleCollider> other);
 
 private:
 	void CreateVertices();
