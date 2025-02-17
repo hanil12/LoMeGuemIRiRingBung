@@ -8,8 +8,10 @@ public:
 	BowScene();
 	~BowScene();
 
+	virtual void PreUpdate() override;
 	void Update() override;
 	void Render() override;
+	virtual  void PostRender() override;
 
 	void Fire();
 

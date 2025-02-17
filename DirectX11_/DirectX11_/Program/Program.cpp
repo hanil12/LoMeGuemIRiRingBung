@@ -8,7 +8,7 @@
 
 Program::Program()
 {
-	_scene = make_shared<CollisionScene>();
+	_scene = make_shared<BowScene>();
 
     _view = make_shared<MatrixBuffer>();
     _projection = make_shared<MatrixBuffer>();
@@ -24,10 +24,12 @@ Program::~Program()
 void Program::Update()
 {
     InputManager::GetInstance()->Update();
+    TimeManager::Instance()->Update();
 
     _view->Update();
     _projection->Update();
 
+    _scene->PreUpdate();
 	_scene->Update();
 }
 
@@ -48,6 +50,8 @@ void Program::Render()
     DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
     ALPHA->SetState();
     _scene->Render();
+
+    _scene->PostRender();
 
     Device::Instance()->GetSwapChain()->Present(0, 0);
 }

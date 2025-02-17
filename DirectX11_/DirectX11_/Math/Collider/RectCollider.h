@@ -22,10 +22,13 @@ public:
 
 	OBB_DESC GetOBB();
 	Vector Center() { return _transform->GetWorldLocation(); }
+	float SeperateAxis(Vector unit, Vector a, Vector b);
 
 	// 1. 점충돌 구현
 	// 2. CircleCollider
 	bool IsCollision(const Vector& pos);
+	bool IsCollision(shared_ptr<class CircleCollider> other);
+	bool IsCollision(shared_ptr<RectCollider> other);
 
 private:
 	void CreateVertices();

@@ -7,6 +7,7 @@ CollisionScene::CollisionScene()
 	_circleCollider2 = make_shared<CircleCollider>(Vector(250,0), 50);
 	_circleCollider3 = make_shared<CircleCollider>(CENTER - Vector(250,0), 100);
 	_rectCollider = make_shared<RectCollider>(Vector(100,100), Vector(100, 100));
+	_movingRect = make_shared<RectCollider>(Vector(100,100), Vector(100, 100));
 
 
 	_rectCollider->GetTransform()->SetParent(_circleCollider1->GetTransform());
@@ -25,10 +26,11 @@ void CollisionScene::Update()
 	_circleCollider2->Update();
 	_circleCollider3->Update();
 	_rectCollider->Update();
+	_movingRect->Update();
 
 	Input();
 
-	if(_rectCollider->IsCollision(mousePos))
+	if(_rectCollider->IsCollision(_movingRect))
 		_rectCollider->SetRed();
 	else
 		_rectCollider->SetGreen();
@@ -40,6 +42,7 @@ void CollisionScene::Render()
 	_circleCollider2->Render();
 	_circleCollider3->Render();
 	_rectCollider->Render();
+	_movingRect->Render();
 }
 
 void CollisionScene::Input()
@@ -65,4 +68,6 @@ void CollisionScene::Input()
 	{
 		_circleCollider1->GetTransform()->AddAngle(-0.001f);
 	}
+
+	_movingRect->GetTransform()->SetLocalLocation(mousePos);
 }

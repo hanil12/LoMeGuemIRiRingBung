@@ -19,3 +19,6 @@
 #define KEY_UP(k)			InputManager::GetInstance()->Up(k)
 #define KEY_DOWN(k)			InputManager::GetInstance()->Down(k)
 #define KEY_PRESS(k)		InputManager::GetInstance()->Press(k)
+
+#define DELTA_TIME			TimeManager::Instance()->GetDeltaTime()
+#define RUN_TIME			TimeManager::Instance()->GetRunTime()

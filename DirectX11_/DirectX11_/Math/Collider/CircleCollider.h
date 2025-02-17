@@ -20,6 +20,7 @@ public:
 	// 2. CircleCollider
 	bool IsCollision(const Vector& pos);
 	bool IsCollision(shared_ptr<CircleCollider> other);
+	bool IsCollision(shared_ptr<RectCollider> other);
 
 private:
 	void CreateVertices();

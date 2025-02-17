@@ -9,7 +9,7 @@ BowScene::BowScene()
 	_bow->GetTransform()->SetLocalLocation(Vector(100,100));
 	_bow->GetTransform()->SetScale(Vector(0.16f,0.16f));
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 30; i++)
 	{
 		_arrows.push_back(make_shared<Arrow>());
 	}
@@ -21,10 +21,13 @@ BowScene::~BowScene()
 {
 }
 
-void BowScene::Update()
+void BowScene::PreUpdate()
 {
 	_rect->Update();
+}
 
+void BowScene::Update()
+{
 	_bow->Update();
 
 	Vector dir = mousePos - _bow->GetTransform()->GetLocalLocation();
@@ -62,13 +65,19 @@ void BowScene::Render()
 	{
 		arrow->Render();
 	}
+}
 
-	_rect->Render();
+void BowScene::PostRender()
+{
+	for (auto arrow : _arrows)
+	{
+		arrow->PostRender();
+	}
 }
 
 void BowScene::Fire()
 {
-	_delay += 0.001f;
+	_delay += DELTA_TIME;
 
 	if ((GetKeyState(VK_LBUTTON) & 0x8000) && (_delay > 1.0f))
 	{

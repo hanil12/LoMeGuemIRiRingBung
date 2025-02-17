@@ -55,6 +55,7 @@ using namespace DirectX;
 
 // Utility
 #include "Utility/InputManager.h"
+#include "Utility/TimeManager.h"
 
 // Collider
 #include "Math/Collider/RectCollider.h"
