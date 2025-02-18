@@ -18,3 +18,11 @@ void SRV::PSSet(int slot)
 {
     DC->PSSetShaderResources(slot, 1, _srv.GetAddressOf());
 }
+
+Vector SRV::GetSize()
+{
+    if(image.GetImageCount() == 0)
+        return Vector(0,0);
+
+    return Vector(image.GetMetadata().width, image.GetMetadata().height);
+}

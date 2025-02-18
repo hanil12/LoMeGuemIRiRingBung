@@ -10,6 +10,9 @@ public:
 	void Render();
 
 	shared_ptr<Transform> GetTransform() { return _transform; }
+	Vector ImageSize() { return _srv->GetSize(); }
+
+	void SetFlipX(int value) { _flipBuffer->SetData(value); _flipBuffer->Update(); }
 
 private:
 	void CreateVertices();
@@ -25,5 +28,6 @@ private:
 
 	// Transform
 	shared_ptr<Transform> _transform; // <= 월드에 존재하기 위한 필요조건
+	shared_ptr<FlipBuffer> _flipBuffer;
 };
 

@@ -16,6 +16,7 @@ public:
 	Vector GetWorldScale();
 
 	void SetScale(Vector scale) { _scale = scale; Update(); }
+	void SetScale(float value) { _scale = Vector(value, value); Update(); }
 	Vector GetScale() { return _scale; }
 	void AddScale(Vector value) { _scale += value; }
 

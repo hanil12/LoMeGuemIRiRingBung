@@ -6,6 +6,7 @@ public:
 	~SRV();
 
 	void PSSet(int slot);
+	Vector GetSize();
 
 private:
 	ScratchImage image;

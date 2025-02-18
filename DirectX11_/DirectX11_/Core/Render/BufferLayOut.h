@@ -45,3 +45,27 @@ public:
 private:
 	Data _data;
 };
+
+class FlipBuffer : public ConstantBuffer
+{
+public:
+	struct Data
+	{
+		int leftRight = 0;
+		int padding[3];
+	};
+
+	FlipBuffer()
+		: ConstantBuffer(&_data, sizeof(Data))
+	{
+	}
+	~FlipBuffer() {}
+
+	void SetData(int leftRight)
+	{
+		_data.leftRight = leftRight;
+	}
+
+private:
+	Data _data;
+};

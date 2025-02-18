@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\DungreedScene.h" />
+    <ClInclude Include="Contents\ArrowScene\Player.h" />
     <ClInclude Include="Scene\CollisionScene.h" />
     <ClInclude Include="Math\Collider\CircleCollider.h" />
     <ClInclude Include="Contents\ArrowScene\Arrow.h" />
@@ -180,6 +182,8 @@
     <ClInclude Include="Utility\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\DungreedScene.cpp" />
+    <ClCompile Include="Contents\ArrowScene\Player.cpp" />
     <ClCompile Include="Scene\CollisionScene.cpp" />
     <ClCompile Include="Math\Collider\CircleCollider.cpp" />
     <ClCompile Include="Contents\ArrowScene\Arrow.cpp" />
@@ -223,6 +227,7 @@
     <Image Include="DirectX11_.ico" />
     <Image Include="Resource\earth.png" />
     <Image Include="Resource\moon.png" />
+    <Image Include="Resource\Player.png" />
     <Image Include="Resource\SCS.png" />
     <Image Include="Resource\sun.png" />
     <Image Include="small.ico" />
