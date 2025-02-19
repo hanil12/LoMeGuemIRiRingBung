@@ -21,8 +21,8 @@ DungreedScene::~DungreedScene()
 
 void DungreedScene::PreUpdate()
 {
-	_player->PreUpdate();
 	_track->PreUpdate();
+	_player->PreUpdate();
 }
 
 void DungreedScene::Update()

@@ -15,6 +15,7 @@ public:
 	void SetFlipX(int value) { _flipBuffer->SetData(value); _flipBuffer->Update(); }
 
 private:
+	// mesh
 	void CreateVertices();
 	vector<Vertex_Texture>	 _vertices;
 	vector<UINT>			 _indices;
@@ -22,6 +23,7 @@ private:
 	shared_ptr<VertexBuffer> _vertexBuffer;
 	shared_ptr<IndexBuffer> _indexBuffer;
 
+	// material
 	shared_ptr<VertexShader> _vs;
 	shared_ptr<PixelShader> _ps;
 	shared_ptr<SRV> _srv;

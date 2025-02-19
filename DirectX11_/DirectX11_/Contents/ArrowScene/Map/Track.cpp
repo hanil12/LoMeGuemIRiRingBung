@@ -38,7 +38,7 @@ void Track::PostRender()
 
 void Track::Block(shared_ptr<Player> player)
 {
-	if (player->Collider()->IsCollision(_rect))
+	if (_rect->Block(player->Collider()) == 1)
 	{
 		player->IsFalling() = false;
 	}

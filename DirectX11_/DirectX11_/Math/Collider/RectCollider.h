@@ -30,6 +30,8 @@ public:
 	bool IsCollision(shared_ptr<class CircleCollider> other);
 	bool IsCollision(shared_ptr<RectCollider> other);
 
+	int Block(shared_ptr<RectCollider> other);
+
 private:
 	void CreateVertices();
 
