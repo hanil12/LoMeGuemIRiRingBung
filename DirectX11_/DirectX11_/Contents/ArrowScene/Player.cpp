@@ -23,8 +23,15 @@ void Player::PreUpdate()
 void Player::Update()
 {
 	Input();
+	Jump();
 
 	_quad->Update();
+
+	if (_isFalling == true)
+	{
+		_body->GetTransform()->AddLocalLocation(Vector(0, 1) * _jumpForce * DELTA_TIME);
+		_jumpForce -= DELTA_TIME * 1000.0f;
+	}
 }
 
 void Player::Render()
@@ -49,5 +56,14 @@ void Player::Input()
 	{
 		_body->GetTransform()->AddLocalLocation(Vector(1,0) * DELTA_TIME * _speed);
 		_quad->SetFlipX(0);
+	}
+}
+
+void Player::Jump()
+{
+	if (KEY_DOWN(VK_SPACE) && _isFalling == false)
+	{
+		_jumpForce = 1000;
+		_isFalling = true;
 	}
 }

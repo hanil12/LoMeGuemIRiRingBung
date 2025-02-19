@@ -13,5 +13,7 @@ public:
 
 private:
 	shared_ptr<class Player> _player;
+	shared_ptr<Quad> _bg;
+	shared_ptr<class Track> _track;
 };
 

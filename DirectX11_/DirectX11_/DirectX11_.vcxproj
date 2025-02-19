@@ -178,6 +178,7 @@
     <ClInclude Include="Core\Render\VertexShader.h" />
     <ClInclude Include="Scene\TutorialScene.h" />
     <ClInclude Include="Math\Transform.h" />
+    <ClInclude Include="Contents\ArrowScene\Map\Track.h" />
     <ClInclude Include="Utility\TimeManager.h" />
     <ClInclude Include="Utility\InputManager.h" />
   </ItemGroup>
@@ -217,6 +218,7 @@
     <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Scene\SolarSystemScene.cpp" />
     <ClCompile Include="Core\Texture\StateManager.cpp" />
+    <ClCompile Include="Contents\ArrowScene\Map\Track.cpp" />
     <ClCompile Include="Utility\TimeManager.cpp" />
     <ClCompile Include="Utility\InputManager.cpp" />
   </ItemGroup>
