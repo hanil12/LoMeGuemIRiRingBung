@@ -69,3 +69,31 @@ public:
 private:
 	Data _data;
 };
+
+class FrameBuffer : public ConstantBuffer
+{
+public:
+	struct Data
+	{
+		XMFLOAT2 maxFrame;
+		XMFLOAT2 curFrame;
+	};
+
+	FrameBuffer()
+		: ConstantBuffer(&_data, sizeof(Data))
+	{
+	}
+	~FrameBuffer() {}
+
+	void SetMaxFrame(XMFLOAT2 value)
+	{
+		_data.maxFrame = value;
+	}
+	void SetCurFrame(XMFLOAT2 value)
+	{
+		_data.curFrame = value;
+	}
+
+private:
+	Data _data;
+};

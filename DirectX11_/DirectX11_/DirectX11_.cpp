@@ -49,6 +49,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     StateManager::Create();
     InputManager::Create();
     TimeManager::Create();
+    SRVManager::Create();
 
     shared_ptr<Program> program = make_shared<Program>();
 
@@ -73,6 +74,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
     }
 
+    SRVManager::Delete();
     TimeManager::Delete();
     InputManager::Delete();
     StateManager::Delete();

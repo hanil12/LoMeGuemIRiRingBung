@@ -1,20 +1,21 @@
 #pragma once
+
 class Quad
 {
 public:
 	// TextureMapping을 기본
 	Quad(wstring path);
-	~Quad();
+	virtual ~Quad();
 	
-	void Update();
-	void Render();
+	virtual void Update();
+	virtual void Render();
 
 	shared_ptr<Transform> GetTransform() { return _transform; }
-	Vector ImageSize() { return _srv->GetSize(); }
+	Vector ImageSize();
 
 	void SetFlipX(int value) { _flipBuffer->SetData(value); _flipBuffer->Update(); }
 
-private:
+protected:
 	// mesh
 	void CreateVertices();
 	vector<Vertex_Texture>	 _vertices;
@@ -26,7 +27,7 @@ private:
 	// material
 	shared_ptr<VertexShader> _vs;
 	shared_ptr<PixelShader> _ps;
-	shared_ptr<SRV> _srv;
+	wstring _srvPath;
 
 	// Transform
 	shared_ptr<Transform> _transform; // <= 월드에 존재하기 위한 필요조건

@@ -53,6 +53,8 @@
     <ClInclude Include="Contents\ArrowScene\Player.h" />
     <ClInclude Include="Scene\DungreedScene.h" />
     <ClInclude Include="Contents\ArrowScene\Map\Track.h" />
+    <ClInclude Include="Core\Texture\SRVManager.h" />
+    <ClInclude Include="Contents\Sprite.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
@@ -142,6 +144,12 @@
     <ClCompile Include="Contents\ArrowScene\Map\Track.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Texture\SRVManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Sprite.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX11_.rc">
@@ -177,5 +185,6 @@
     <FxCompile Include="Shader\TexturePixelShader.hlsl" />
     <FxCompile Include="Shader\ColliderVertexShader.hlsl" />
     <FxCompile Include="Shader\ColliderPixelShader.hlsl" />
+    <FxCompile Include="Shader\SpritePixelShader.hlsl" />
   </ItemGroup>
 </Project>

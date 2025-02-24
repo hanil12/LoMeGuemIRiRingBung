@@ -5,7 +5,8 @@ Quad::Quad(wstring path)
 {
 	_vs = make_shared<VertexShader>(L"Shader/TextureVertexShader.hlsl");
 	_ps = make_shared<PixelShader>(L"Shader/TexturePixelShader.hlsl");
-	_srv = make_shared<SRV>(path);
+	_srvPath = path;
+    ADD_SRV(_srvPath);
 
     CreateVertices();
 
@@ -28,7 +29,7 @@ void Quad::Render()
     _vertexBuffer->SetVertexBuffer(0);
     _indexBuffer->IASetIndexBuffer();
 
-    _srv->PSSet(0);
+    ADD_SRV(_srvPath)->PSSet(0);
     SAMPLER->PSSet(0);
 
     _transform->SetVSSlot(0);
@@ -40,9 +41,14 @@ void Quad::Render()
     DC->DrawIndexed(_indices.size(), 0,0);
 }
 
+Vector Quad::ImageSize()
+{
+    return ADD_SRV(_srvPath)->GetSize();
+}
+
 void Quad::CreateVertices()
 {
-    Vector halfSize = _srv->GetSize() * 0.5f;
+    Vector halfSize = ADD_SRV(_srvPath)->GetSize() * 0.5f;
 
     Vertex_Texture temp;
     temp.pos = XMFLOAT3(-halfSize.x, halfSize.y, 0.0f);
