@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Contents\Action.h" />
+    <ClInclude Include="Contents\Effect\Effect.h" />
     <ClInclude Include="Scene\DungreedScene.h" />
     <ClInclude Include="Contents\ArrowScene\Player.h" />
     <ClInclude Include="Scene\CollisionScene.h" />
@@ -185,6 +187,8 @@
     <ClInclude Include="Utility\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Contents\Action.cpp" />
+    <ClCompile Include="Contents\Effect\Effect.cpp" />
     <ClCompile Include="Scene\DungreedScene.cpp" />
     <ClCompile Include="Contents\ArrowScene\Player.cpp" />
     <ClCompile Include="Scene\CollisionScene.cpp" />

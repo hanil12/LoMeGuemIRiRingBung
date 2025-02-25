@@ -17,7 +17,7 @@ public:
 
 protected:
 	// mesh
-	void CreateVertices();
+	virtual void CreateVertices();
 	vector<Vertex_Texture>	 _vertices;
 	vector<UINT>			 _indices;
 

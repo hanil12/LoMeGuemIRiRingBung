@@ -66,6 +66,9 @@ using namespace DirectX;
 #include "Contents/Quad.h"
 #include "Contents/Sprite.h"
 
+#include "Contents/Action.h"
+#include "Contents/Effect/Effect.h"
+
 // Scene
 #include "Scene/Scene.h"
 

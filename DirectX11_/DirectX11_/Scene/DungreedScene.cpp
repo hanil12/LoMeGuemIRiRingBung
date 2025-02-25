@@ -9,9 +9,9 @@ DungreedScene::DungreedScene()
 	_player = make_shared<Player>();
 	_bg = make_shared<Quad>(L"Resource/bg.png");
 	_track = make_shared<Track>();
-	_sprite = make_shared<Sprite>(L"Resource/Effects/hit_4x2.png", Vector(4,2));
-	_sprite->SetCurFrame(Vector(1,1));
-	_sprite->GetTransform()->SetLocalLocation(CENTER);
+
+	_effect = make_shared<Effect>(L"Resource/Effects/hit2_4x4.png", Vector(4,4),0.1f, Action::LOOP);
+	_effect->Play(CENTER);
 
 	_bg->GetTransform()->SetLocalLocation(CENTER);
 
@@ -32,7 +32,7 @@ void DungreedScene::Update()
 {
 	_player->Update();
 	_track->Update();
-	_sprite->Update();
+	_effect->Update();
 
 	_track->Block(_player);
 }
@@ -41,7 +41,7 @@ void DungreedScene::Render()
 {
 	_bg->Render();
 	_track->Render();
-	_sprite->Render();
+	_effect->Render();
 
 	_player->Render();
 }

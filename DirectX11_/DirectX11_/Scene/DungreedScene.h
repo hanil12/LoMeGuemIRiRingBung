@@ -16,6 +16,6 @@ private:
 	shared_ptr<Quad> _bg;
 	shared_ptr<class Track> _track;
 
-	shared_ptr<Sprite> _sprite;
+	shared_ptr<Effect> _effect;
 };
 

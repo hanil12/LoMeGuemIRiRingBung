@@ -55,6 +55,8 @@
     <ClInclude Include="Contents\ArrowScene\Map\Track.h" />
     <ClInclude Include="Core\Texture\SRVManager.h" />
     <ClInclude Include="Contents\Sprite.h" />
+    <ClInclude Include="Contents\Action.h" />
+    <ClInclude Include="Contents\Effect\Effect.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11_.cpp">
@@ -148,6 +150,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Sprite.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Action.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Effect\Effect.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

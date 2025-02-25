@@ -94,6 +94,9 @@ public:
 		_data.curFrame = value;
 	}
 
+	Vector GetMaxFrame() { return Vector(_data.maxFrame); }
+	Vector GetCurFrame() { return Vector(_data.curFrame); }
+
 private:
 	Data _data;
 };

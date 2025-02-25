@@ -6,6 +6,7 @@ struct Vector : public XMFLOAT2
 public:
     Vector() : XMFLOAT2() {}
     Vector(float x, float y) : XMFLOAT2(x,y) {}
+    Vector(const XMFLOAT2& value) : XMFLOAT2(value) {}
     ~Vector() {}
 
     float Dot(const Vector& other)

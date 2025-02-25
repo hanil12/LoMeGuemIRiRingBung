@@ -48,6 +48,9 @@ Vector Quad::ImageSize()
 
 void Quad::CreateVertices()
 {
+    _indices.clear();
+    _vertices.clear();
+
     Vector halfSize = ADD_SRV(_srvPath)->GetSize() * 0.5f;
 
     Vertex_Texture temp;
