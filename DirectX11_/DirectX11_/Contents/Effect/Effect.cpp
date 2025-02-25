@@ -62,7 +62,7 @@ void Effect::CreateClips(wstring file, Vector maxFrame, float speed, Action::Typ
 	{
 		for (int x = 0; x < maxFrame.x; x++)
 		{
-			Action::Clip clip = Action::Clip(y * clipsSize.y ,x * clipsSize.x ,clipsSize.x,clipsSize.y, ADD_SRV(file));
+			Action::Clip clip = Action::Clip(x * clipsSize.x, y * clipsSize.y,clipsSize.x,clipsSize.y, ADD_SRV(file));
 			clips.push_back(clip);
 		}
 	}
