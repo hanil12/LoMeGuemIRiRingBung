@@ -3,12 +3,14 @@
 
 #include "Contents/ArrowScene/Player.h"
 #include "Contents/ArrowScene/Map/Track.h"
+#include "Contents/UI/HpBar.h"
 
 DungreedScene::DungreedScene()
 {
 	_player = make_shared<Player>();
 	_bg = make_shared<Quad>(L"Resource/bg.png");
 	_track = make_shared<Track>();
+	_UIhpBar = make_shared<HpBar>(CENTER + Vector(-360,300), Vector(300,50));
 
 	_effect = make_shared<Effect>(L"Resource/Effects/hit2_4x4.png", Vector(4,4),0.1f, Action::LOOP);
 	_effect->Play(CENTER);
@@ -33,6 +35,7 @@ void DungreedScene::Update()
 	_player->Update();
 	_track->Update();
 	_effect->Update();
+	_UIhpBar->Update();
 
 	_track->Block(_player);
 }
@@ -44,6 +47,8 @@ void DungreedScene::Render()
 	_effect->Render();
 
 	_player->Render();
+
+	_UIhpBar->Render();
 }
 
 void DungreedScene::PostRender()

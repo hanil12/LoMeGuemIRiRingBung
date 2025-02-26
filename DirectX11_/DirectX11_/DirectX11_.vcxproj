@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="Contents\Action.h" />
     <ClInclude Include="Contents\Effect\Effect.h" />
+    <ClInclude Include="Contents\UI\HpBar.h" />
     <ClInclude Include="Scene\DungreedScene.h" />
     <ClInclude Include="Contents\ArrowScene\Player.h" />
     <ClInclude Include="Scene\CollisionScene.h" />
@@ -189,6 +190,7 @@
   <ItemGroup>
     <ClCompile Include="Contents\Action.cpp" />
     <ClCompile Include="Contents\Effect\Effect.cpp" />
+    <ClCompile Include="Contents\UI\HpBar.cpp" />
     <ClCompile Include="Scene\DungreedScene.cpp" />
     <ClCompile Include="Contents\ArrowScene\Player.cpp" />
     <ClCompile Include="Scene\CollisionScene.cpp" />
@@ -240,6 +242,8 @@
     <Image Include="Resource\Player.png" />
     <Image Include="Resource\SCS.png" />
     <Image Include="Resource\sun.png" />
+    <Image Include="Resource\UI\Button.png" />
+    <Image Include="Resource\UI\Grey.png" />
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>

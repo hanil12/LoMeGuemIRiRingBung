@@ -17,5 +17,7 @@ private:
 	shared_ptr<class Track> _track;
 
 	shared_ptr<Effect> _effect;
+
+	shared_ptr<class HpBar> _UIhpBar;
 };
 

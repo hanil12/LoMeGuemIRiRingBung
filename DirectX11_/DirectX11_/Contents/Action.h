@@ -36,7 +36,7 @@ public:
 	Action::Type GetRepeatType() { return _repeatType; }
 	bool IsPlay() { return _isPlay; }
 
-	void SetCallBack(function<void(void)> func) { _event = func; }
+	void SetEndEvent(function<void(void)> func) { _event = func; }
 
 private:
 	vector<Clip>			_clips;

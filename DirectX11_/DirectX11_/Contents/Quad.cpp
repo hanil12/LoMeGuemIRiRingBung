@@ -6,7 +6,21 @@ Quad::Quad(wstring path)
 	_vs = make_shared<VertexShader>(L"Shader/TextureVertexShader.hlsl");
 	_ps = make_shared<PixelShader>(L"Shader/TexturePixelShader.hlsl");
 	_srvPath = path;
+    _halfSize = ADD_SRV(_srvPath)->GetSize() * 0.5f;
+
+    CreateVertices();
+
+    _transform = make_shared<Transform>();
+    _flipBuffer = make_shared<FlipBuffer>();
+}
+
+Quad::Quad(wstring path, Vector size)
+{
+    _vs = make_shared<VertexShader>(L"Shader/TextureVertexShader.hlsl");
+    _ps = make_shared<PixelShader>(L"Shader/TexturePixelShader.hlsl");
+    _srvPath = path;
     ADD_SRV(_srvPath);
+    _halfSize = size * 0.5f;
 
     CreateVertices();
 
@@ -51,22 +65,20 @@ void Quad::CreateVertices()
     _indices.clear();
     _vertices.clear();
 
-    Vector halfSize = ADD_SRV(_srvPath)->GetSize() * 0.5f;
-
     Vertex_Texture temp;
-    temp.pos = XMFLOAT3(-halfSize.x, halfSize.y, 0.0f);
+    temp.pos = XMFLOAT3(-_halfSize.x, _halfSize.y, 0.0f);
     temp.uv = XMFLOAT2(0, 0);
     _vertices.push_back(temp); // 왼쪽 위
 
-    temp.pos = XMFLOAT3(halfSize.x, -halfSize.y, 0.0f);
+    temp.pos = XMFLOAT3(_halfSize.x, -_halfSize.y, 0.0f);
     temp.uv = XMFLOAT2(1, 1);
     _vertices.push_back(temp); // 오른쪽 아래
 
-    temp.pos = XMFLOAT3(-halfSize.x, -halfSize.y, 0.0f);
+    temp.pos = XMFLOAT3(-_halfSize.x, -_halfSize.y, 0.0f);
     temp.uv = XMFLOAT2(0, 1);
     _vertices.push_back(temp); // 왼쪽 아래
 
-    temp.pos = XMFLOAT3(halfSize.x, halfSize.y, 0.0f);
+    temp.pos = XMFLOAT3(_halfSize.x, _halfSize.y, 0.0f);
     temp.uv = XMFLOAT2(1, 0);
     _vertices.push_back(temp); // 오른쪽 위
 

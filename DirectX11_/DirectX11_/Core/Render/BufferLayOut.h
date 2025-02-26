@@ -100,3 +100,28 @@ public:
 private:
 	Data _data;
 };
+
+
+class SliderBuffer : public ConstantBuffer
+{
+public:
+	struct Data
+	{
+		float sliderValue = 0.0f;
+		int padding[3];
+	};
+
+	SliderBuffer()
+		: ConstantBuffer(&_data, sizeof(Data))
+	{
+	}
+	~SliderBuffer() {}
+
+	void SetData(float value)
+	{
+		_data.sliderValue = value;
+	}
+
+private:
+	Data _data;
+};

@@ -69,4 +69,6 @@ void Effect::CreateClips(wstring file, Vector maxFrame, float speed, Action::Typ
 
 	string name = string(file.begin(), file.end());
 	_action = make_shared<Action>(clips, name, type, speed);
+
+	_action->SetEndEvent(std::bind(&Effect::End, this));
 }
