@@ -204,5 +204,6 @@
     <FxCompile Include="Shader\ColliderVertexShader.hlsl" />
     <FxCompile Include="Shader\ColliderPixelShader.hlsl" />
     <FxCompile Include="Shader\SpritePixelShader.hlsl" />
+    <FxCompile Include="Shader\SliderPixelShader.hlsl" />
   </ItemGroup>
 </Project>

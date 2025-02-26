@@ -7,6 +7,10 @@ HpBar::HpBar(Vector center, Vector size)
 	_bg = make_shared<Quad>(L"Resource/UI/Grey.png", size);
 
 	SetPosition(center);
+
+	_hpBar->SetPS(make_shared<PixelShader>(L"Shader/SliderPixelShader.hlsl"));
+	_sliderBuffer = make_shared<SliderBuffer>();
+	SetRatio(0.5f);
 }
 
 HpBar::~HpBar()
@@ -22,6 +26,7 @@ void HpBar::Update()
 void HpBar::Render()
 {
 	_bg->Render();
+	_sliderBuffer->SetPSBuffer(1);
 	_hpBar->Render();
 }
 

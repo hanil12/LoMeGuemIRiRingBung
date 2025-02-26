@@ -11,10 +11,10 @@ public:
 	void SetPosition(Vector pos);
 	void SetSize(Vector size);
 
-	void SetRatio(float value) { /*TODO*/};
+	void SetRatio(float value) { _sliderBuffer->SetData(value); _value = value; _sliderBuffer->Update(); }
 
 private:
-	float value = 1.0f;
+	float _value = 1.0f;
 
 	shared_ptr<Quad> _hpBar;
 	shared_ptr<Quad> _bg;
