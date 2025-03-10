@@ -5,6 +5,11 @@
 using namespace std;
 
 // Spin Lock : 무한루프를 타면서 자물쇠 풀릴 때 까지 반복(CAS)
+// 1. Release 환경에서는 컴파일최적화가 일어난다.
+//	=> volatile, atomic
+// 2. flag를 비교하고, 값을 대입하는 과정이 나뉜다.
+//  => CAS(Compare And Swap)
+// 
 // Sleep Lock
 // Event Lock
 
