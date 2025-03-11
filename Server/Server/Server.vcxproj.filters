@@ -28,6 +28,15 @@
     <ClCompile Include="SpinLock.cpp">
       <Filter>Main 파일</Filter>
     </ClCompile>
+    <ClCompile Include="SleepLock.cpp">
+      <Filter>Main 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="EventLock.cpp">
+      <Filter>Main 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="EventLock2.cpp">
+      <Filter>Main 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h">
